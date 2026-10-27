@@ -588,4 +588,111 @@ class AppLocalizationsTe extends AppLocalizations {
   String historyDayNoDoses(String date) {
     return '$date: డోసులు లేవు';
   }
+
+  @override
+  String get familyCheckTitle => 'కుటుంబానికి తెలియజేయడం';
+
+  @override
+  String get familyCheckIntro =>
+      'మిస్ అయ్యే సమయంలోగా డోసును \'వేసుకున్నాను\' అని నొక్కకపోతే, ఈ ఫోన్ ఒకరిద్దరు కుటుంబ సభ్యులకు తెలియజేయగలదు. మీరు ఇక్కడ ఆన్ చేసే వరకు ఇది ఆఫ్‌లోనే ఉంటుంది.';
+
+  @override
+  String get familyCheckEnable =>
+      'మిస్ అయిన డోసుల గురించి కుటుంబానికి చెప్పండి';
+
+  @override
+  String get familyPersonLabel => 'కుటుంబంలో వీరిని ఏమని పిలుస్తారు?';
+
+  @override
+  String get familyPersonHint => 'ఉదాహరణ: అమ్మ';
+
+  @override
+  String familyNumberLabel(int index) {
+    return 'కుటుంబ సభ్యుల ఫోన్ నంబర్ $index';
+  }
+
+  @override
+  String get familyNumberHint => '+91 98765 43210';
+
+  @override
+  String get familyNumberInvalid => 'ఇది ఫోన్ నంబర్‌లా లేదు.';
+
+  @override
+  String get familyHowTitle => 'ఎలా తెలియజేయాలి?';
+
+  @override
+  String get familyChannelSms => 'ఈ ఫోన్ నుంచి SMS (ఆటోమేటిక్‌గా)';
+
+  @override
+  String get familyChannelSmsHelp =>
+      'ఈ ఫోనే స్వయంగా పంపుతుంది. మామూలు SMS ఛార్జీలు వర్తిస్తాయి.';
+
+  @override
+  String get familyChannelWhatsapp => 'WhatsApp (ఎవరైనా Send నొక్కాలి)';
+
+  @override
+  String get familyChannelWhatsappHelp =>
+      'ఈ ఫోన్‌లో ఒక నోటిఫికేషన్ వస్తుంది, అది సందేశం సిద్ధంగా ఉన్న WhatsAppను తెరుస్తుంది. ఎవరైనా Send నొక్కే వరకు ఏదీ పంపబడదు.';
+
+  @override
+  String get familySmsConsent =>
+      'డోసు మిస్ అయినప్పుడు ఈ నంబర్లకు ఈ ఫోన్ SMS పంపడానికి నేను అంగీకరిస్తున్నాను.';
+
+  @override
+  String get familySmsPermission => 'SMS పంపడానికి అనుమతించండి';
+
+  @override
+  String get familySmsPermissionMissing =>
+      'SMS అనుమతి ఆఫ్‌లో ఉంది. అనుమతించే వరకు, సందేశం సిద్ధంగా ఉన్న SMS యాప్‌ను తెరిచే నోటిఫికేషన్ వస్తుంది.';
+
+  @override
+  String get familySendTest => 'పరీక్ష సందేశం పంపండి';
+
+  @override
+  String get familyTestSent => 'పరీక్ష సందేశం పంపబడింది.';
+
+  @override
+  String get familyTestFailed => 'సందేశం పంపలేకపోయాం. నంబర్‌ను, SIMను చూడండి.';
+
+  @override
+  String get familyMessagePreview => 'సందేశం ఇలా ఉంటుంది';
+
+  @override
+  String familyMessage(String person, String medicines, String time) {
+    return 'మందుల రిమైండర్: $person $timeకి వేసుకోవాల్సిన $medicines ఇంకా వేసుకున్నట్లు నొక్కలేదు. దయచేసి ఒకసారి కనుక్కోండి.';
+  }
+
+  @override
+  String familyTestMessage(String person) {
+    return 'మందుల రిమైండర్: ఇది పరీక్ష సందేశం. $person డోసు మిస్ అయితే మీకు ఇలాంటి సందేశం వస్తుంది.';
+  }
+
+  @override
+  String get familyPersonFallback => 'మీ కుటుంబ సభ్యులు';
+
+  @override
+  String get familyNotifySentTitle => 'కుటుంబానికి తెలియజేశాం';
+
+  @override
+  String get familyNotifySentBody =>
+      'మిస్ అయిన డోసు గురించి మీ కుటుంబానికి SMS పంపాం.';
+
+  @override
+  String get familyNotifyShareTitle => 'కుటుంబానికి చెప్పండి';
+
+  @override
+  String get familyNotifyShareBody =>
+      'ఒక డోసు మిస్ అయింది. సందేశం పంపడానికి నొక్కండి.';
+
+  @override
+  String get familyNeedsNumber => 'కనీసం ఒక ఫోన్ నంబర్ చేర్చండి.';
+
+  @override
+  String get familyNeedsConsent => 'SMS కోసం అంగీకారాన్ని టిక్ చేయండి.';
+
+  @override
+  String get familyStatusOn => 'ఆన్';
+
+  @override
+  String get familyStatusOff => 'ఆఫ్';
 }

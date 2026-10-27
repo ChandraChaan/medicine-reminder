@@ -11,6 +11,7 @@ import android.view.WindowManager
 import dev.chandra.medicine_reminder.alarm.AlarmEntry
 import dev.chandra.medicine_reminder.alarm.AlarmNotifications
 import dev.chandra.medicine_reminder.alarm.AlarmScheduler
+import dev.chandra.medicine_reminder.alarm.FamilyAlert
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -85,6 +86,24 @@ class MainActivity : FlutterActivity() {
                     }
                     "alarmDone" -> {
                         showOverLockScreen(false)
+                        result.success(null)
+                    }
+                    "sendSms" -> {
+                        val phones = call.argument<List<String>>("phones").orEmpty()
+                        val message = call.argument<String>("message") ?: ""
+                        // Off the main thread: the radio can be slow to accept.
+                        Thread {
+                            val ok = FamilyAlert.sendSms(this@MainActivity, phones, message)
+                            runOnUiThread { result.success(ok) }
+                        }.start()
+                    }
+                    "openWhatsApp" -> {
+                        startSafely(
+                            FamilyAlert.whatsAppIntent(
+                                call.argument<String>("phone") ?: "",
+                                call.argument<String>("message") ?: "",
+                            ),
+                        )
                         result.success(null)
                     }
                     "showNotice" -> {

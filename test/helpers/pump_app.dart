@@ -33,12 +33,14 @@ class TestApp {
   final bridge = FakeAlarmBridge();
   final speech = FakeSpeech();
   final notificationPermission = FakeNotificationPermission();
+  final smsPermission = FakeSmsPermission();
 
   List<Override> get overrides => [
     clockProvider.overrideWithValue(clock),
     alarmBridgeProvider.overrideWithValue(bridge),
     speechServiceProvider.overrideWithValue(speech),
     notificationPermissionProvider.overrideWithValue(notificationPermission),
+    smsPermissionProvider.overrideWithValue(smsPermission),
     photoPickerProvider.overrideWithValue(FakePhotoPicker()),
     medicineRepositoryProvider.overrideWithValue(medicines),
     doseLogRepositoryProvider.overrideWithValue(log),

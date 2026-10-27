@@ -17,6 +17,18 @@ class AlarmReceiver : BroadcastReceiver() {
             Log.e("AlarmReceiver", "Unreadable alarm", e)
             return
         }
+        // Sending an SMS can take a moment; keep the receiver alive for it.
+        if (entry.kind == AlarmEntry.KIND_CHECK) {
+            val pending = goAsync()
+            Thread {
+                try {
+                    FamilyAlert.send(context, entry)
+                } finally {
+                    pending.finish()
+                }
+            }.start()
+            return
+        }
         when (entry.kind) {
             AlarmEntry.KIND_RING -> AlarmNotifications.showRinging(context, entry)
         }

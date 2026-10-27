@@ -98,10 +98,14 @@ String speechFor(AppLocalizations l10n, List<Medicine> medicines) {
   ].join(' ');
 }
 
-/// Times outside widgets (notifications), for example "8:00 AM".
-String formatClock(AppLocalizations l10n, int minuteOfDay) => DateFormat.jm(
-  l10n.localeName,
-).format(DateTime(2000, 1, 1, minuteOfDay ~/ 60, minuteOfDay % 60));
+/// Times outside widgets (notifications, SMS), for example "8:00 AM".
+///
+/// ICU puts a narrow no-break space before "AM"; older phones show it as a
+/// box in an SMS, so it becomes a plain space.
+String formatClock(AppLocalizations l10n, int minuteOfDay) =>
+    DateFormat.jm(l10n.localeName)
+        .format(DateTime(2000, 1, 1, minuteOfDay ~/ 60, minuteOfDay % 60))
+        .replaceAll(RegExp('[\u202F\u00A0]'), ' ');
 
 /// Times inside widgets; follows the phone's 12/24-hour setting.
 String formatTimeOf(BuildContext context, int minuteOfDay) =>

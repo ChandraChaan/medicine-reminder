@@ -130,13 +130,15 @@ Future<void> shoot(
   String location = '/',
   AppLanguage language = AppLanguage.english,
   List<DoseEvent>? events,
+  FamilyCheck family = const FamilyCheck(),
 }) async {
   final app = TestApp(
     clock: FakeClock(now),
     medicines: medicines,
     events: events ?? history(),
-    settings: AppSettings(onboarded: true, language: language),
+    settings: AppSettings(onboarded: true, language: language, family: family),
   );
+  app.smsPermission.granted = true;
   await app.pump(tester, location: location);
   await expectLater(
     find.byType(MaterialApp),

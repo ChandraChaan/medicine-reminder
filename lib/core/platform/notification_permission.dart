@@ -15,3 +15,20 @@ class PermissionHandlerNotificationPermission
   Future<bool> request() async =>
       (await Permission.notification.request()).isGranted;
 }
+
+/// Asks for SEND_SMS, used only by the optional family check.
+abstract interface class SmsPermission {
+  Future<bool> isGranted();
+
+  Future<bool> request();
+}
+
+class PermissionHandlerSmsPermission implements SmsPermission {
+  const PermissionHandlerSmsPermission();
+
+  @override
+  Future<bool> isGranted() => Permission.sms.isGranted;
+
+  @override
+  Future<bool> request() async => (await Permission.sms.request()).isGranted;
+}
