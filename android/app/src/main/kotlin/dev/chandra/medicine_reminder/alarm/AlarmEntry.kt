@@ -17,6 +17,8 @@ data class AlarmEntry(
     val minute: Int,
     val title: String,
     val body: String,
+    /** Kind-specific data, e.g. the family numbers and message of a check. */
+    val extra: JSONObject? = null,
 ) {
     fun triggerAtMillis(zone: ZoneId): Long =
         LocalDate.parse(date)
@@ -32,9 +34,11 @@ data class AlarmEntry(
         .put("minute", minute)
         .put("title", title)
         .put("body", body)
+        .apply { if (extra != null) put("extra", extra) }
 
     companion object {
         const val KIND_RING = "ring"
+        const val KIND_CHECK = "check"
 
         fun fromJson(json: JSONObject) = AlarmEntry(
             id = json.getInt("id"),
@@ -43,6 +47,7 @@ data class AlarmEntry(
             minute = json.getInt("minute"),
             title = json.optString("title"),
             body = json.optString("body"),
+            extra = json.optJSONObject("extra"),
         )
 
         fun fromMap(map: Map<*, *>) = AlarmEntry(
@@ -52,6 +57,7 @@ data class AlarmEntry(
             minute = (map["minute"] as Number).toInt(),
             title = map["title"] as? String ?: "",
             body = map["body"] as? String ?: "",
+            extra = (map["extra"] as? Map<*, *>)?.let { JSONObject(it) },
         )
 
         fun listToJson(entries: List<AlarmEntry>): String =

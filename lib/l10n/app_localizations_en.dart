@@ -589,4 +589,111 @@ class AppLocalizationsEn extends AppLocalizations {
   String historyDayNoDoses(String date) {
     return '$date: no doses';
   }
+
+  @override
+  String get familyCheckTitle => 'Family check';
+
+  @override
+  String get familyCheckIntro =>
+      'If a dose is not marked Taken within the missed-dose time, this phone can let one or two family members know. It stays off until you turn it on here.';
+
+  @override
+  String get familyCheckEnable => 'Tell family about missed doses';
+
+  @override
+  String get familyPersonLabel => 'What does the family call them?';
+
+  @override
+  String get familyPersonHint => 'For example: Amma';
+
+  @override
+  String familyNumberLabel(int index) {
+    return 'Family phone number $index';
+  }
+
+  @override
+  String get familyNumberHint => '+91 98765 43210';
+
+  @override
+  String get familyNumberInvalid => 'This doesn\'t look like a phone number.';
+
+  @override
+  String get familyHowTitle => 'How should they be told?';
+
+  @override
+  String get familyChannelSms => 'SMS from this phone (automatic)';
+
+  @override
+  String get familyChannelSmsHelp =>
+      'This phone sends it by itself. Normal SMS charges apply.';
+
+  @override
+  String get familyChannelWhatsapp => 'WhatsApp (someone presses Send)';
+
+  @override
+  String get familyChannelWhatsappHelp =>
+      'A notification on this phone opens WhatsApp with the message ready. Nothing is sent until someone presses Send.';
+
+  @override
+  String get familySmsConsent =>
+      'I agree that this phone may send an SMS to these numbers when a dose is missed.';
+
+  @override
+  String get familySmsPermission => 'Allow sending SMS';
+
+  @override
+  String get familySmsPermissionMissing =>
+      'SMS permission is off. Until it is allowed, a notification opens the SMS app with the message ready instead.';
+
+  @override
+  String get familySendTest => 'Send a test message';
+
+  @override
+  String get familyTestSent => 'Test message sent.';
+
+  @override
+  String get familyTestFailed =>
+      'The message could not be sent. Check the number and the SIM.';
+
+  @override
+  String get familyMessagePreview => 'Message preview';
+
+  @override
+  String familyMessage(String person, String medicines, String time) {
+    return 'Medicine Reminder: $person has not marked $medicines (due at $time) as taken. Please check on them.';
+  }
+
+  @override
+  String familyTestMessage(String person) {
+    return 'Medicine Reminder: this is a test. You will get a message like this if $person misses a dose.';
+  }
+
+  @override
+  String get familyPersonFallback => 'your family member';
+
+  @override
+  String get familyNotifySentTitle => 'Family was told';
+
+  @override
+  String get familyNotifySentBody =>
+      'An SMS about the missed dose was sent to your family.';
+
+  @override
+  String get familyNotifyShareTitle => 'Tell your family';
+
+  @override
+  String get familyNotifyShareBody =>
+      'A dose was missed. Tap to send the message.';
+
+  @override
+  String get familyNeedsNumber => 'Add at least one phone number.';
+
+  @override
+  String get familyNeedsConsent => 'Please tick the agreement to use SMS.';
+
+  @override
+  String get familyStatusOn => 'On';
+
+  @override
+  String get familyStatusOff => 'Off';
 }

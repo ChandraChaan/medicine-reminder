@@ -38,6 +38,9 @@ Future<void> main() async {
         notificationPermissionProvider.overrideWithValue(
           const PermissionHandlerNotificationPermission(),
         ),
+        smsPermissionProvider.overrideWithValue(
+          const PermissionHandlerSmsPermission(),
+        ),
         photoPickerProvider.overrideWithValue(ImagePickerPhotoPicker()),
         medicineRepositoryProvider.overrideWithValue(
           FileMedicineRepository(store),

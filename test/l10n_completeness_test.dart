@@ -66,6 +66,7 @@ void main() {
           'doseAmount',
           'speechItem',
           'speechItemNoFood',
+          'familyNumberHint',
         };
         for (final key in _messages(english).difference(sameOnPurpose)) {
           if (key.startsWith('@')) continue;

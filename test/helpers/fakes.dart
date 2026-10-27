@@ -125,6 +125,19 @@ class FakeAlarmBridge implements AlarmBridge {
   @override
   Future<void> alarmDone() async => alarmDoneCalls++;
 
+  final sms = <(List<String>, String)>[];
+  final whatsApp = <(String, String)>[];
+
+  @override
+  Future<bool> sendSms(List<String> phones, String message) async {
+    sms.add((phones, message));
+    return true;
+  }
+
+  @override
+  Future<void> openWhatsApp(String phone, String message) async =>
+      whatsApp.add((phone, message));
+
   @override
   Future<void> showNotice({
     required int id,
@@ -155,6 +168,20 @@ class FakeNotificationPermission implements NotificationPermission {
   Future<bool> request() async {
     requests++;
     return true;
+  }
+}
+
+class FakeSmsPermission implements SmsPermission {
+  bool granted = false;
+  int requests = 0;
+
+  @override
+  Future<bool> isGranted() async => granted;
+
+  @override
+  Future<bool> request() async {
+    requests++;
+    return granted = true;
   }
 }
 

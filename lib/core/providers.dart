@@ -29,6 +29,10 @@ final notificationPermissionProvider = Provider<NotificationPermission>(
   (ref) => throw UnimplementedError('Override notificationPermissionProvider'),
 );
 
+final smsPermissionProvider = Provider<SmsPermission>(
+  (ref) => throw UnimplementedError('Override smsPermissionProvider'),
+);
+
 final photoPickerProvider = Provider<PhotoPicker>(
   (ref) => throw UnimplementedError('Override photoPickerProvider'),
 );

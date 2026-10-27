@@ -1011,6 +1011,192 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{date}: no doses'**
   String historyDayNoDoses(String date);
+
+  /// No description provided for @familyCheckTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Family check'**
+  String get familyCheckTitle;
+
+  /// No description provided for @familyCheckIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'If a dose is not marked Taken within the missed-dose time, this phone can let one or two family members know. It stays off until you turn it on here.'**
+  String get familyCheckIntro;
+
+  /// No description provided for @familyCheckEnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell family about missed doses'**
+  String get familyCheckEnable;
+
+  /// No description provided for @familyPersonLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What does the family call them?'**
+  String get familyPersonLabel;
+
+  /// No description provided for @familyPersonHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: Amma'**
+  String get familyPersonHint;
+
+  /// No description provided for @familyNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Family phone number {index}'**
+  String familyNumberLabel(int index);
+
+  /// No description provided for @familyNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'+91 98765 43210'**
+  String get familyNumberHint;
+
+  /// No description provided for @familyNumberInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This doesn\'t look like a phone number.'**
+  String get familyNumberInvalid;
+
+  /// No description provided for @familyHowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How should they be told?'**
+  String get familyHowTitle;
+
+  /// No description provided for @familyChannelSms.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS from this phone (automatic)'**
+  String get familyChannelSms;
+
+  /// No description provided for @familyChannelSmsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone sends it by itself. Normal SMS charges apply.'**
+  String get familyChannelSmsHelp;
+
+  /// No description provided for @familyChannelWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp (someone presses Send)'**
+  String get familyChannelWhatsapp;
+
+  /// No description provided for @familyChannelWhatsappHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'A notification on this phone opens WhatsApp with the message ready. Nothing is sent until someone presses Send.'**
+  String get familyChannelWhatsappHelp;
+
+  /// No description provided for @familySmsConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'I agree that this phone may send an SMS to these numbers when a dose is missed.'**
+  String get familySmsConsent;
+
+  /// No description provided for @familySmsPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow sending SMS'**
+  String get familySmsPermission;
+
+  /// No description provided for @familySmsPermissionMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS permission is off. Until it is allowed, a notification opens the SMS app with the message ready instead.'**
+  String get familySmsPermissionMissing;
+
+  /// No description provided for @familySendTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a test message'**
+  String get familySendTest;
+
+  /// No description provided for @familyTestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Test message sent.'**
+  String get familyTestSent;
+
+  /// No description provided for @familyTestFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The message could not be sent. Check the number and the SIM.'**
+  String get familyTestFailed;
+
+  /// No description provided for @familyMessagePreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Message preview'**
+  String get familyMessagePreview;
+
+  /// No description provided for @familyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicine Reminder: {person} has not marked {medicines} (due at {time}) as taken. Please check on them.'**
+  String familyMessage(String person, String medicines, String time);
+
+  /// No description provided for @familyTestMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicine Reminder: this is a test. You will get a message like this if {person} misses a dose.'**
+  String familyTestMessage(String person);
+
+  /// No description provided for @familyPersonFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'your family member'**
+  String get familyPersonFallback;
+
+  /// No description provided for @familyNotifySentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Family was told'**
+  String get familyNotifySentTitle;
+
+  /// No description provided for @familyNotifySentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'An SMS about the missed dose was sent to your family.'**
+  String get familyNotifySentBody;
+
+  /// No description provided for @familyNotifyShareTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell your family'**
+  String get familyNotifyShareTitle;
+
+  /// No description provided for @familyNotifyShareBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A dose was missed. Tap to send the message.'**
+  String get familyNotifyShareBody;
+
+  /// No description provided for @familyNeedsNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one phone number.'**
+  String get familyNeedsNumber;
+
+  /// No description provided for @familyNeedsConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'Please tick the agreement to use SMS.'**
+  String get familyNeedsConsent;
+
+  /// No description provided for @familyStatusOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get familyStatusOn;
+
+  /// No description provided for @familyStatusOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get familyStatusOff;
 }
 
 class _AppLocalizationsDelegate

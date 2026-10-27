@@ -15,6 +15,7 @@ import '../features/doses/presentation/home_screen.dart';
 import '../features/medicines/presentation/medicine_form_screen.dart';
 import '../features/medicines/presentation/medicines_screen.dart';
 import '../features/settings/domain/app_settings.dart';
+import '../features/settings/presentation/family_check_screen.dart';
 import '../features/settings/presentation/onboarding_screen.dart';
 import '../features/settings/presentation/settings_controller.dart';
 import '../features/settings/presentation/settings_screen.dart';
@@ -27,6 +28,7 @@ GoRouter buildRouter(String initialLocation) => GoRouter(
     GoRoute(path: '/alarm', builder: (_, _) => const AlarmScreen()),
     GoRoute(path: '/history', builder: (_, _) => const HistoryScreen()),
     GoRoute(path: '/settings', builder: (_, _) => const SettingsScreen()),
+    GoRoute(path: '/family', builder: (_, _) => const FamilyCheckScreen()),
     GoRoute(
       path: '/medicines',
       builder: (_, _) => const MedicinesScreen(),

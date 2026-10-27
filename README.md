@@ -17,6 +17,11 @@ A son or daughter sets it up once. Everything stays on the phone: no account, no
   <img src="docs/screenshots/03_history.png" alt="Month calendar of taken and missed doses" width="200">
   <img src="docs/screenshots/05_alarm_telugu.png" alt="The alarm screen in Telugu" width="200">
 </p>
+<p align="center">
+  <img src="docs/screenshots/07_family_check.png" alt="Family check settings: name, family phone number, SMS or WhatsApp, and the consent checkbox" width="200">
+  <img src="docs/screenshots/04_medicines.png" alt="Family setup list of medicines with dose, times and tablets left" width="200">
+  <img src="docs/screenshots/06_today_hindi.png" alt="Today screen in Hindi" width="200">
+</p>
 
 > [!IMPORTANT]
 > This app is a reminder aid. It is **not medical advice** and does not replace a doctor or pharmacist. Always follow the prescription. Phones can be switched off, run out of battery or be set to silent, so please don't rely on any app alone for critical medicines.
@@ -38,6 +43,7 @@ Open the file on the phone and allow installing from your browser or file manage
 - **Alarms that are hard to miss.** Exact alarms that ring with the alarm sound (not a quiet notification), turn the screen on and open over the lock screen. The alarm rings for 20 seconds (or until the screen is touched), then the reminder is read out, and repeated a few times until someone answers.
 - **Huge, simple alarm screen.** Photo of the strip, medicine name, dose and before/after food, then three very large buttons: **Taken**, **Snooze 10 min**, **Skip**. Several medicines at the same time are shown one after another.
 - **Spoken reminder** in Telugu, Hindi or English using the phone's own text-to-speech voice. If the phone has no voice for the chosen language, it speaks English instead and Settings explains how to add the voice.
+- **Family check (optional, off by default).** If a dose is not marked Taken within the missed-dose time, the phone can tell one or two family members: by **SMS sent automatically** (only after the setup person ticks a clear consent and allows SMS), or by a notification that opens a **ready-made WhatsApp message** someone sends with one tap. Nothing is ever sent unless you turn it on.
 - **Refill warnings.** Optionally count tablets: each Taken counts one dose down, and the app warns a few days before they run out (you choose how many).
 - **History calendar.** A month view of taken, missed and skipped doses, clear enough to screenshot and send to family.
 - **Survives restarts.** Alarms are put back after the phone restarts, after an app update and when the time or time zone changes (an 8:00 dose stays at 8:00 local time when you travel).
@@ -57,7 +63,10 @@ Open the file on the phone and allow installing from your browser or file manage
    - optionally, **how many tablets are in hand**, to get refill warnings.
 4. Repeat for each medicine. Check the **Today** screen: every dose is listed with its time.
 5. In **Family setup → Settings**, check that all three *Alarm permissions* say **On**.
-6. Show your parent the alarm screen once: tap a dose on Today to see the same big buttons.
+6. Optional: in **Settings → Family check**, turn on *Tell family about missed doses*, type what the family calls your parent (for example *Amma*), add one or two numbers, and choose:
+   - **SMS from this phone**: tick the agreement and allow SMS. Then tap **Send a test message** to check it arrives. Normal SMS charges apply.
+   - **WhatsApp**: no permission needed; when a dose is missed, a notification on your parent's phone opens WhatsApp with the message ready, and someone presses *Send*.
+7. Show your parent the alarm screen once: tap a dose on Today to see the same big buttons.
 
 **Tips**
 - Keep the phone's **alarm volume** up (alarm volume is separate from the ringer volume).
@@ -73,13 +82,15 @@ Open the file on the phone and allow installing from your browser or file manage
 | Full-screen alarm (`USE_FULL_SCREEN_INTENT`) | To open the alarm screen over the lock screen, like a clock alarm. Android 14+ lets you turn this off; the app shows a **Fix** button if it is. |
 | Run at startup (`RECEIVE_BOOT_COMPLETED`) | To put the alarms back after the phone restarts. |
 | Vibrate (`VIBRATE`) | To vibrate with the alarm. |
+| Send SMS (`SEND_SMS`), optional | Only for the family check, and only asked for after you turn it on and tick the agreement. It is used for one thing: texting the numbers you entered when a dose is not marked Taken. Without it, the app shows a notification that opens your SMS app with the message ready instead. The app never reads your messages. |
 
-There is **no internet permission**: the app cannot send anything anywhere. The camera is only opened through Android's own camera app when you choose *Take a photo*.
+There is **no internet permission**. The only thing that can ever leave the phone is the family-check SMS, if you turn it on. The camera is only opened through Android's own camera app when you choose *Take a photo*.
 
 ## Privacy
 
 - Medicines, photos and history are stored **only on this phone**, in the app's private storage.
 - No account, no cloud, no analytics, no ads, no crash reporting.
+- The family check is off until you turn it on. When on, the message contains only your parent's name as you typed it, the medicine name and the time.
 - Android's automatic app backup is turned off for this app, so health data is not copied to a cloud backup.
 - Uninstalling the app deletes everything.
 

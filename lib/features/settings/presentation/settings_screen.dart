@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/l10n/l10n.dart';
 import '../../../core/platform/alarm_bridge.dart';
@@ -53,6 +54,21 @@ class SettingsScreen extends ConsumerWidget {
                         .change((s) => s.copyWith(missedAfterMinutes: minutes)),
                   ),
               ],
+            ),
+            _Heading(l10n.familyCheckTitle),
+            Card(
+              child: ListTile(
+                key: const Key('open-family-check'),
+                leading: const Icon(Icons.family_restroom_rounded, size: 32),
+                title: Text(l10n.familyCheckEnable),
+                subtitle: Text(
+                  s.family.isActive
+                      ? l10n.familyStatusOn
+                      : l10n.familyStatusOff,
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded),
+                onTap: () => context.push('/family'),
+              ),
             ),
             _Heading(l10n.settingsPermissions),
             const _PermissionList(),

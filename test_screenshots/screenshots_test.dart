@@ -2,6 +2,7 @@
 //   flutter test test_screenshots --update-goldens
 import 'package:flutter_test/flutter_test.dart';
 import 'package:medicine_reminder/core/time/local_date.dart';
+import 'package:medicine_reminder/features/settings/domain/app_settings.dart';
 
 import 'screenshot_setup.dart';
 
@@ -31,6 +32,21 @@ void main() {
       '03_history',
       now: const LocalDateTime(today, 22 * 60),
       location: '/history',
+    );
+  });
+
+  testWidgets('family check', (tester) async {
+    await shoot(
+      tester,
+      '07_family_check',
+      now: const LocalDateTime(today, 10 * 60),
+      location: '/family',
+      family: const FamilyCheck(
+        enabled: true,
+        personName: 'Amma',
+        numbers: ['+91 98765 43210'],
+        smsConsent: true,
+      ),
     );
   });
 

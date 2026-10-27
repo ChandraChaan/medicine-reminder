@@ -278,3 +278,52 @@ DaySummary summarizeDay(
     open: open,
   );
 }
+
+/// A moment to check on doses that may still be unanswered: if they are not
+/// marked Taken by [at], the family is told.
+@immutable
+class PlannedCheck {
+  const PlannedCheck(this.at, this.doses);
+
+  final LocalDateTime at;
+  final List<DoseOccurrence> doses;
+}
+
+/// One check per missed-dose deadline from [now] up to [horizonDays] ahead,
+/// for every dose not yet marked Taken. Skipped doses are included: a Skip
+/// pressed by mistake is exactly what the family would want to know about.
+List<PlannedCheck> planFamilyChecks(
+  Iterable<Medicine> medicines,
+  DoseLog log,
+  LocalDateTime now, {
+  required int missedAfterMinutes,
+  int horizonDays = 7,
+  int maxChecks = 200,
+}) {
+  final end = now.addMinutes(horizonDays * LocalDateTime.minutesPerDay);
+  final byMinute = <LocalDateTime, List<DoseOccurrence>>{};
+  for (final dose in occurrencesBetween(
+    medicines,
+    now.date.addDays(-1),
+    end.date,
+  )) {
+    final status = doseStatus(
+      dose,
+      log,
+      now,
+      missedAfterMinutes: missedAfterMinutes,
+    );
+    if (status is DoseTaken || status is DoseMissed) continue;
+    final deadline = missedDeadline(
+      dose,
+      log,
+      missedAfterMinutes: missedAfterMinutes,
+    );
+    if (!deadline.isAfter(now) || deadline.isAfter(end)) continue;
+    (byMinute[deadline] ??= []).add(dose);
+  }
+  final times = byMinute.keys.toList()..sort();
+  return [
+    for (final at in times.take(maxChecks)) PlannedCheck(at, byMinute[at]!),
+  ];
+}

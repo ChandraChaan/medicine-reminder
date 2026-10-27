@@ -6,7 +6,26 @@ Map<String, Object?> settingsToJson(AppSettings s) => {
   'onboarded': s.onboarded,
   'speak': s.speak,
   'missedAfterMinutes': s.missedAfterMinutes,
+  'family': {
+    'enabled': s.family.enabled,
+    'personName': s.family.personName,
+    'numbers': s.family.numbers,
+    'channel': s.family.channel.name,
+    'smsConsent': s.family.smsConsent,
+  },
 };
+
+FamilyCheck _familyFromJson(Object? json) {
+  if (json is! Map<String, Object?>) return const FamilyCheck();
+  return FamilyCheck(
+    enabled: json['enabled'] as bool? ?? false,
+    personName: json['personName'] as String? ?? '',
+    numbers: (json['numbers'] as List<Object?>?)?.cast<String>() ?? const [],
+    channel:
+        FamilyChannel.values.asNameMap()[json['channel']] ?? FamilyChannel.sms,
+    smsConsent: json['smsConsent'] as bool? ?? false,
+  );
+}
 
 AppSettings settingsFromJson(Map<String, Object?> json) {
   const defaults = AppSettings();
@@ -16,6 +35,7 @@ AppSettings settingsFromJson(Map<String, Object?> json) {
     speak: json['speak'] as bool? ?? defaults.speak,
     missedAfterMinutes:
         json['missedAfterMinutes'] as int? ?? defaults.missedAfterMinutes,
+    family: _familyFromJson(json['family']),
   );
 }
 

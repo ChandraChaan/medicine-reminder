@@ -587,4 +587,110 @@ class AppLocalizationsHi extends AppLocalizations {
   String historyDayNoDoses(String date) {
     return '$date: कोई खुराक नहीं';
   }
+
+  @override
+  String get familyCheckTitle => 'परिवार को सूचना';
+
+  @override
+  String get familyCheckIntro =>
+      'अगर खुराक छूटी हुई मानने के समय तक \'ले ली\' नहीं दबाया गया, तो यह फ़ोन परिवार के एक या दो लोगों को बता सकता है। जब तक आप इसे यहाँ चालू नहीं करते, यह बंद रहता है।';
+
+  @override
+  String get familyCheckEnable => 'छूटी खुराक के बारे में परिवार को बताएँ';
+
+  @override
+  String get familyPersonLabel => 'परिवार इन्हें क्या कहकर बुलाता है?';
+
+  @override
+  String get familyPersonHint => 'जैसे: माँ';
+
+  @override
+  String familyNumberLabel(int index) {
+    return 'परिवार का फ़ोन नंबर $index';
+  }
+
+  @override
+  String get familyNumberHint => '+91 98765 43210';
+
+  @override
+  String get familyNumberInvalid => 'यह फ़ोन नंबर जैसा नहीं लगता।';
+
+  @override
+  String get familyHowTitle => 'कैसे बताया जाए?';
+
+  @override
+  String get familyChannelSms => 'इस फ़ोन से SMS (अपने आप)';
+
+  @override
+  String get familyChannelSmsHelp =>
+      'यह फ़ोन खुद भेजता है। सामान्य SMS शुल्क लगेगा।';
+
+  @override
+  String get familyChannelWhatsapp => 'WhatsApp (किसी को Send दबाना होगा)';
+
+  @override
+  String get familyChannelWhatsappHelp =>
+      'इस फ़ोन पर एक सूचना आएगी जो तैयार संदेश के साथ WhatsApp खोलती है। जब तक कोई Send न दबाए, कुछ नहीं भेजा जाता।';
+
+  @override
+  String get familySmsConsent =>
+      'मैं सहमत हूँ कि खुराक छूटने पर यह फ़ोन इन नंबरों पर SMS भेज सकता है।';
+
+  @override
+  String get familySmsPermission => 'SMS भेजने की अनुमति दें';
+
+  @override
+  String get familySmsPermissionMissing =>
+      'SMS की अनुमति बंद है। अनुमति मिलने तक, तैयार संदेश के साथ SMS ऐप खोलने वाली सूचना दिखेगी।';
+
+  @override
+  String get familySendTest => 'जाँच संदेश भेजें';
+
+  @override
+  String get familyTestSent => 'जाँच संदेश भेज दिया गया।';
+
+  @override
+  String get familyTestFailed => 'संदेश नहीं भेजा जा सका। नंबर और SIM जाँचें।';
+
+  @override
+  String get familyMessagePreview => 'संदेश ऐसा दिखेगा';
+
+  @override
+  String familyMessage(String person, String medicines, String time) {
+    return 'दवा रिमाइंडर: $person ने $time वाली $medicines अभी तक ली हुई दर्ज नहीं की है। कृपया एक बार पूछ लें।';
+  }
+
+  @override
+  String familyTestMessage(String person) {
+    return 'दवा रिमाइंडर: यह जाँच संदेश है। अगर $person की खुराक छूटती है तो आपको ऐसा संदेश मिलेगा।';
+  }
+
+  @override
+  String get familyPersonFallback => 'आपके परिवार के सदस्य';
+
+  @override
+  String get familyNotifySentTitle => 'परिवार को बता दिया गया';
+
+  @override
+  String get familyNotifySentBody =>
+      'छूटी खुराक के बारे में परिवार को SMS भेजा गया।';
+
+  @override
+  String get familyNotifyShareTitle => 'परिवार को बताएँ';
+
+  @override
+  String get familyNotifyShareBody =>
+      'एक खुराक छूट गई है। संदेश भेजने के लिए दबाएँ।';
+
+  @override
+  String get familyNeedsNumber => 'कम से कम एक फ़ोन नंबर जोड़ें।';
+
+  @override
+  String get familyNeedsConsent => 'SMS के लिए सहमति पर टिक करें।';
+
+  @override
+  String get familyStatusOn => 'चालू';
+
+  @override
+  String get familyStatusOff => 'बंद';
 }

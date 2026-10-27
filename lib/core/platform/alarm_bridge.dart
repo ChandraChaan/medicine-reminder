@@ -5,7 +5,13 @@ import 'package:meta/meta.dart';
 
 import '../time/local_date.dart';
 
-enum AlarmKind { ring }
+enum AlarmKind {
+  /// Ring and open the alarm screen.
+  ring,
+
+  /// Tell family if the doses are still not taken.
+  check,
+}
 
 /// One alarm for Android to keep. Times are wall-clock, so Android works out
 /// the instant in whatever time zone the phone is in when it (re)schedules.
@@ -17,6 +23,7 @@ class AlarmEntry {
     required this.at,
     required this.title,
     required this.body,
+    this.extra = const {},
   });
 
   final int id;
@@ -24,6 +31,9 @@ class AlarmEntry {
   final LocalDateTime at;
   final String title;
   final String body;
+
+  /// Kind-specific data, for example the family numbers of a check.
+  final Map<String, Object> extra;
 
   /// The map the Android side stores and reads back after a reboot.
   Map<String, Object> toMap() => {
@@ -33,6 +43,7 @@ class AlarmEntry {
     'minute': at.minuteOfDay,
     'title': title,
     'body': body,
+    if (extra.isNotEmpty) 'extra': extra,
   };
 }
 
@@ -94,6 +105,12 @@ abstract interface class AlarmBridge {
   /// Lets the lock screen come back after the alarm screen closes.
   Future<void> alarmDone();
 
+  /// Sends [message] by SMS to each of [phones] now; false if it couldn't.
+  Future<bool> sendSms(List<String> phones, String message);
+
+  /// Opens WhatsApp with [message] ready to send to [phone].
+  Future<void> openWhatsApp(String phone, String message);
+
   /// A plain notification, for example "Only 3 days of BP tablet left".
   Future<void> showNotice({
     required int id,
@@ -154,6 +171,18 @@ class MethodChannelAlarmBridge implements AlarmBridge {
 
   @override
   Future<void> alarmDone() => _channel.invokeMethod<void>('alarmDone');
+
+  @override
+  Future<bool> sendSms(List<String> phones, String message) async =>
+      await _channel.invokeMethod<bool>('sendSms', {
+        'phones': phones,
+        'message': message,
+      }) ??
+      false;
+
+  @override
+  Future<void> openWhatsApp(String phone, String message) => _channel
+      .invokeMethod<void>('openWhatsApp', {'phone': phone, 'message': message});
 
   @override
   Future<void> showNotice({
