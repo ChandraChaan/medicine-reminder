@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">दवा रिमाइंडर</string>
+    <string name="channel_alarms">दवा के अलार्म</string>
+    <string name="channel_notices">दवा खत्म होने की सूचनाएँ</string>
+</resources>

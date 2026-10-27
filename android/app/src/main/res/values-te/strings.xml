@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">మందుల రిమైండర్</string>
+    <string name="channel_alarms">మందుల అలారాలు</string>
+    <string name="channel_notices">మందులు కొనాల్సిన సూచనలు</string>
+</resources>
