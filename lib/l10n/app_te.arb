@@ -180,6 +180,8 @@
   "familyHowTitle": "ఎలా తెలియజేయాలి?",
   "familyChannelSms": "ఈ ఫోన్ నుంచి SMS (ఆటోమేటిక్‌గా)",
   "familyChannelSmsHelp": "ఈ ఫోనే స్వయంగా పంపుతుంది. మామూలు SMS ఛార్జీలు వర్తిస్తాయి.",
+  "familyChannelSmsManual": "SMS (ఎవరైనా Send నొక్కాలి)",
+  "familyChannelSmsManualHelp": "ఈ ఫోన్‌లో ఒక నోటిఫికేషన్ వస్తుంది, అది సందేశం సిద్ధంగా ఉన్న SMS యాప్‌ను తెరుస్తుంది. ఎవరైనా Send నొక్కే వరకు ఏదీ పంపబడదు. మామూలు SMS ఛార్జీలు వర్తిస్తాయి.",
   "familyChannelWhatsapp": "WhatsApp (ఎవరైనా Send నొక్కాలి)",
   "familyChannelWhatsappHelp": "ఈ ఫోన్‌లో ఒక నోటిఫికేషన్ వస్తుంది, అది సందేశం సిద్ధంగా ఉన్న WhatsAppను తెరుస్తుంది. ఎవరైనా Send నొక్కే వరకు ఏదీ పంపబడదు.",
   "familySmsConsent": "డోసు మిస్ అయినప్పుడు ఈ నంబర్లకు ఈ ఫోన్ SMS పంపడానికి నేను అంగీకరిస్తున్నాను.",

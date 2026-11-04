@@ -106,6 +106,15 @@ class MainActivity : FlutterActivity() {
                         )
                         result.success(null)
                     }
+                    "openSms" -> {
+                        startSafely(
+                            FamilyAlert.smsIntent(
+                                call.argument<List<String>>("phones").orEmpty(),
+                                call.argument<String>("message") ?: "",
+                            ),
+                        )
+                        result.success(null)
+                    }
                     "showNotice" -> {
                         AlarmNotifications.showNotice(
                             this@MainActivity,

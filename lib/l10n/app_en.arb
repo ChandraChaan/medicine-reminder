@@ -211,6 +211,8 @@
   "familyHowTitle": "How should they be told?",
   "familyChannelSms": "SMS from this phone (automatic)",
   "familyChannelSmsHelp": "This phone sends it by itself. Normal SMS charges apply.",
+  "familyChannelSmsManual": "SMS (someone presses Send)",
+  "familyChannelSmsManualHelp": "A notification on this phone opens the SMS app with the message ready. Nothing is sent until someone presses Send. Normal SMS charges apply.",
   "familyChannelWhatsapp": "WhatsApp (someone presses Send)",
   "familyChannelWhatsappHelp": "A notification on this phone opens WhatsApp with the message ready. Nothing is sent until someone presses Send.",
   "familySmsConsent": "I agree that this phone may send an SMS to these numbers when a dose is missed.",

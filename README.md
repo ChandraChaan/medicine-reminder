@@ -101,10 +101,12 @@ Needs Flutter 3.44 (stable) and the Android SDK (compile SDK 37).
 ```bash
 flutter pub get
 flutter test
-flutter run
+flutter run --flavor full
 ```
 
-Release APKs are built with `flutter build apk --release --split-per-abi --obfuscate --split-debug-info=build-symbols` (plus a universal build) and signed with a key that is not in this repository.
+There are two flavors. **`full`** is the APK on this page: it sends the family SMS by itself and gets exact alarms at install. **`play`** is the Google Play build, which Play doesn't allow to have `SEND_SMS` or `USE_EXACT_ALARM`: its family SMS opens the SMS app with the message ready, and exact alarms need the "Alarms & reminders" access the app asks for.
+
+Release APKs are built with `flutter build apk --release --flavor full --split-per-abi --obfuscate --split-debug-info=build-symbols` (plus a universal build), and the Play bundle with `flutter build appbundle --release --flavor play`. Both are signed with a key that is not in this repository.
 
 ### How it works
 

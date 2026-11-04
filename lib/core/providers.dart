@@ -6,6 +6,7 @@ import '../features/doses/domain/dose_log_repository.dart';
 import '../features/medicines/domain/medicine_repository.dart';
 import '../features/settings/domain/app_settings.dart';
 import 'platform/alarm_bridge.dart';
+import 'platform/distribution.dart';
 import 'platform/notification_permission.dart';
 import 'platform/photo_picker.dart';
 import 'speech/speech_service.dart';
@@ -32,6 +33,10 @@ final notificationPermissionProvider = Provider<NotificationPermission>(
 final smsPermissionProvider = Provider<SmsPermission>(
   (ref) => throw UnimplementedError('Override smsPermissionProvider'),
 );
+
+/// Whether this build sends the family SMS by itself; see
+/// [canSendSmsAutomatically]. Tests override it to act like the Play build.
+final autoSmsProvider = Provider<bool>((ref) => canSendSmsAutomatically);
 
 final photoPickerProvider = Provider<PhotoPicker>(
   (ref) => throw UnimplementedError('Override photoPickerProvider'),

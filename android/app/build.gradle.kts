@@ -34,6 +34,22 @@ android {
         versionName = flutter.versionName
     }
 
+    // Two distributions of the same app:
+    //  * full — the APKs on GitHub. Sends the family SMS by itself and gets
+    //           exact alarms at install (SEND_SMS, USE_EXACT_ALARM).
+    //  * play — Google Play. Neither permission: the family SMS opens the SMS
+    //           app with the message ready, and exact alarms need the
+    //           "Alarms & reminders" access the app already asks for.
+    flavorDimensions += "distribution"
+    productFlavors {
+        create("full") {
+            dimension = "distribution"
+        }
+        create("play") {
+            dimension = "distribution"
+        }
+    }
+
     signingConfigs {
         if (hasReleaseKey) {
             create("release") {

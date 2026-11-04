@@ -628,6 +628,13 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఈ ఫోనే స్వయంగా పంపుతుంది. మామూలు SMS ఛార్జీలు వర్తిస్తాయి.';
 
   @override
+  String get familyChannelSmsManual => 'SMS (ఎవరైనా Send నొక్కాలి)';
+
+  @override
+  String get familyChannelSmsManualHelp =>
+      'ఈ ఫోన్‌లో ఒక నోటిఫికేషన్ వస్తుంది, అది సందేశం సిద్ధంగా ఉన్న SMS యాప్‌ను తెరుస్తుంది. ఎవరైనా Send నొక్కే వరకు ఏదీ పంపబడదు. మామూలు SMS ఛార్జీలు వర్తిస్తాయి.';
+
+  @override
   String get familyChannelWhatsapp => 'WhatsApp (ఎవరైనా Send నొక్కాలి)';
 
   @override

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/l10n/l10n.dart';
+import '../../../core/providers.dart';
 import '../../../core/widgets/async_view.dart';
 import '../../doses/presentation/alarm_sync.dart';
 import '../../medicines/presentation/medicines_controller.dart';
@@ -91,6 +92,7 @@ class _FamilyFormState extends ConsumerState<_FamilyForm> {
     final family = ref.watch(settingsProvider).value?.family ?? widget.initial;
     final controller = ref.read(familyCheckControllerProvider);
     final smsGranted = ref.watch(smsGrantedProvider).value ?? false;
+    final autoSms = ref.watch(autoSmsProvider);
     final language =
         ref.watch(settingsProvider).value?.language ?? AppLanguage.english;
     final medicines = ref.watch(medicinesProvider).value ?? const [];
@@ -171,8 +173,16 @@ class _FamilyFormState extends ConsumerState<_FamilyForm> {
                   key: const Key('family-channel-sms'),
                   contentPadding: EdgeInsets.zero,
                   value: FamilyChannel.sms,
-                  title: Text(l10n.familyChannelSms),
-                  subtitle: Text(l10n.familyChannelSmsHelp),
+                  title: Text(
+                    autoSms
+                        ? l10n.familyChannelSms
+                        : l10n.familyChannelSmsManual,
+                  ),
+                  subtitle: Text(
+                    autoSms
+                        ? l10n.familyChannelSmsHelp
+                        : l10n.familyChannelSmsManualHelp,
+                  ),
                 ),
                 RadioListTile<FamilyChannel>(
                   key: const Key('family-channel-whatsapp'),
@@ -184,7 +194,7 @@ class _FamilyFormState extends ConsumerState<_FamilyForm> {
               ],
             ),
           ),
-          if (family.channel == FamilyChannel.sms) ...[
+          if (family.channel == FamilyChannel.sms && autoSms) ...[
             CheckboxListTile(
               key: const Key('family-consent'),
               contentPadding: EdgeInsets.zero,

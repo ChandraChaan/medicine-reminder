@@ -62,7 +62,7 @@ class SettingsScreen extends ConsumerWidget {
                 leading: const Icon(Icons.family_restroom_rounded, size: 32),
                 title: Text(l10n.familyCheckEnable),
                 subtitle: Text(
-                  s.family.isActive
+                  s.family.isActive(autoSms: ref.watch(autoSmsProvider))
                       ? l10n.familyStatusOn
                       : l10n.familyStatusOff,
                 ),
