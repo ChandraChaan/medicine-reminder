@@ -626,6 +626,13 @@ class AppLocalizationsHi extends AppLocalizations {
       'यह फ़ोन खुद भेजता है। सामान्य SMS शुल्क लगेगा।';
 
   @override
+  String get familyChannelSmsManual => 'SMS (किसी को Send दबाना होगा)';
+
+  @override
+  String get familyChannelSmsManualHelp =>
+      'इस फ़ोन पर एक सूचना आएगी जो तैयार संदेश के साथ SMS ऐप खोलती है। जब तक कोई Send न दबाए, कुछ नहीं भेजा जाता। सामान्य SMS शुल्क लगेगा।';
+
+  @override
   String get familyChannelWhatsapp => 'WhatsApp (किसी को Send दबाना होगा)';
 
   @override

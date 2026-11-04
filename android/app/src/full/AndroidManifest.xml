@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- `full` flavor only (the APKs on GitHub). The `play` flavor leaves
+         these out: Google Play allows SEND_SMS only for default SMS apps and
+         USE_EXACT_ALARM only for alarm clock and calendar apps. -->
+
+    <!-- Android 13+ grants exact alarms to reminder apps at install. -->
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <!-- Optional family check: text family when a dose is missed. Only
+         asked for, and only used, after the setup person turns it on and
+         agrees. -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+</manifest>

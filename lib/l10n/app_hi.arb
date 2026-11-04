@@ -180,6 +180,8 @@
   "familyHowTitle": "कैसे बताया जाए?",
   "familyChannelSms": "इस फ़ोन से SMS (अपने आप)",
   "familyChannelSmsHelp": "यह फ़ोन खुद भेजता है। सामान्य SMS शुल्क लगेगा।",
+  "familyChannelSmsManual": "SMS (किसी को Send दबाना होगा)",
+  "familyChannelSmsManualHelp": "इस फ़ोन पर एक सूचना आएगी जो तैयार संदेश के साथ SMS ऐप खोलती है। जब तक कोई Send न दबाए, कुछ नहीं भेजा जाता। सामान्य SMS शुल्क लगेगा।",
   "familyChannelWhatsapp": "WhatsApp (किसी को Send दबाना होगा)",
   "familyChannelWhatsappHelp": "इस फ़ोन पर एक सूचना आएगी जो तैयार संदेश के साथ WhatsApp खोलती है। जब तक कोई Send न दबाए, कुछ नहीं भेजा जाता।",
   "familySmsConsent": "मैं सहमत हूँ कि खुराक छूटने पर यह फ़ोन इन नंबरों पर SMS भेज सकता है।",

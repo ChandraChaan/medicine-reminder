@@ -22,11 +22,15 @@ class TestApp {
     List<Medicine> medicines = const [],
     List<DoseEvent> events = const [],
     AppSettings settings = const AppSettings(onboarded: true),
+    this.autoSms = true,
   }) : medicines = FakeMedicineRepository(medicines),
        log = FakeDoseLogRepository(events),
        settings = FakeSettingsRepository(settings);
 
   final FakeClock clock;
+
+  /// False acts like the Play build, which can't send SMS by itself.
+  final bool autoSms;
   final FakeMedicineRepository medicines;
   final FakeDoseLogRepository log;
   final FakeSettingsRepository settings;
@@ -41,6 +45,7 @@ class TestApp {
     speechServiceProvider.overrideWithValue(speech),
     notificationPermissionProvider.overrideWithValue(notificationPermission),
     smsPermissionProvider.overrideWithValue(smsPermission),
+    autoSmsProvider.overrideWithValue(autoSms),
     photoPickerProvider.overrideWithValue(FakePhotoPicker()),
     medicineRepositoryProvider.overrideWithValue(medicines),
     doseLogRepositoryProvider.overrideWithValue(log),

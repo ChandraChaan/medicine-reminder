@@ -40,7 +40,8 @@ class FamilyCheckController {
     return granted;
   }
 
-  /// Sends (SMS) or opens (WhatsApp) a test message to the family numbers.
+  /// Sends (SMS) or opens (WhatsApp, or SMS in the Play build) a test message
+  /// to the family numbers.
   Future<FamilyTestResult> sendTest() async {
     final settings = await _ref.read(settingsProvider.future);
     final family = settings.family;
@@ -57,6 +58,10 @@ class FamilyCheckController {
         await bridge.openWhatsApp(numbers.first, message);
         return FamilyTestResult.opened;
       case FamilyChannel.sms:
+        if (!_ref.read(autoSmsProvider)) {
+          await bridge.openSms(numbers, message);
+          return FamilyTestResult.opened;
+        }
         if (!family.smsConsent) return FamilyTestResult.needsConsent;
         if (!await _ref.read(smsPermissionProvider).isGranted() &&
             !await requestSms()) {

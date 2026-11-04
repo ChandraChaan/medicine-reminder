@@ -87,7 +87,7 @@ object FamilyAlert {
         Uri.parse("https://wa.me/${number.trimStart('+')}?text=${Uri.encode(message)}"),
     )
 
-    private fun smsIntent(numbers: List<String>, message: String): Intent =
+    fun smsIntent(numbers: List<String>, message: String): Intent =
         Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:${numbers.joinToString(";")}"))
             .putExtra("sms_body", message)
 

@@ -132,16 +132,28 @@ void main() {
     );
 
     test('is only active when on, with a number and (for SMS) consent', () {
-      expect(const FamilyCheck().isActive, isFalse);
-      expect(ready.isActive, isTrue);
-      expect(ready.copyWith(enabled: false).isActive, isFalse);
-      expect(ready.copyWith(numbers: ['123']).isActive, isFalse);
-      expect(ready.copyWith(smsConsent: false).isActive, isFalse);
+      expect(const FamilyCheck().isActive(autoSms: true), isFalse);
+      expect(ready.isActive(autoSms: true), isTrue);
+      expect(ready.copyWith(enabled: false).isActive(autoSms: true), isFalse);
+      expect(ready.copyWith(numbers: ['123']).isActive(autoSms: true), isFalse);
+      expect(
+        ready.copyWith(smsConsent: false).isActive(autoSms: true),
+        isFalse,
+      );
       expect(
         ready
             .copyWith(smsConsent: false, channel: FamilyChannel.whatsapp)
-            .isActive,
+            .isActive(autoSms: true),
         isTrue,
+      );
+    });
+
+    test('needs no SMS consent in the Play build, which only opens SMS', () {
+      final noConsent = ready.copyWith(smsConsent: false);
+      expect(noConsent.isActive(autoSms: false), isTrue);
+      expect(
+        noConsent.copyWith(enabled: false).isActive(autoSms: false),
+        isFalse,
       );
     });
 

@@ -2,22 +2,17 @@
 
     <!-- Show reminders (asked at runtime on Android 13+). -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <!-- Exact alarm times. Android 12 asks for "Alarms & reminders" access;
-         Android 13+ grants USE_EXACT_ALARM to reminder apps at install. -->
-    <uses-permission
-        android:name="android.permission.SCHEDULE_EXACT_ALARM"
-        android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <!-- Exact alarm times: the "Alarms & reminders" access the app asks for
+         (Android 12+). The full flavor also has USE_EXACT_ALARM; the play
+         flavor can't, since Play allows it only for alarm clock and calendar
+         apps. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <!-- Open the alarm screen over the lock screen. -->
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <!-- Put alarms back after the phone restarts. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- Optional family check: text family when a dose is missed. Only
-         asked for, and only used, after the setup person turns it on and
-         agrees. -->
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <!-- SEND_SMS must not make the app phone-only. -->
+    <!-- Sending SMS (full flavor only) must not make the app phone-only. -->
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
 
     <application
