@@ -6,24 +6,32 @@ import 'package:medicine_reminder/features/doses/domain/schedule.dart';
 import 'package:medicine_reminder/features/doses/presentation/alarm_sync.dart';
 import 'package:medicine_reminder/features/doses/presentation/dose_controller.dart';
 import 'package:medicine_reminder/features/medicines/data/medicine_json.dart';
-import 'package:medicine_reminder/features/medicines/domain/medicine.dart';
 import 'package:medicine_reminder/features/settings/data/file_settings_repository.dart';
 import 'package:medicine_reminder/features/settings/domain/app_settings.dart';
 
 import '../helpers/test_data.dart';
 
 void main() {
-  test('medicines survive a JSON round trip', () {
+  test('reminders survive a JSON round trip', () {
     final m = med(
       end: day1.addDays(30),
       weekdays: {1, 3, 5},
-      stockQuarters: 42,
-      doseQuarters: 2,
-      unit: DoseUnit.ml,
       times: [21 * 60, 8 * 60],
     ).copyWith(photoPath: () => '/data/photos/1.jpg');
     final back = medicineFromJson(medicineToJson(m));
     expect(back, m.copyWith(times: [8 * 60, 21 * 60]));
+  });
+
+  test('older files with dose, food and stock fields still load', () {
+    final json = {
+      ...medicineToJson(med()),
+      'doseQuarters': 2,
+      'unit': 'tablet',
+      'food': 'afterFood',
+      'stockQuarters': 40,
+      'refillWarnDays': 5,
+    };
+    expect(medicineFromJson(json), med());
   });
 
   test('dose events survive a JSON round trip, times stay in UTC', () {
@@ -48,12 +56,7 @@ void main() {
 
   group('alarm entries for Android (the reboot rescheduling input)', () {
     final bp = med(id: 'bp', times: [8 * 60, 20 * 60]);
-    final sugar = med(
-      id: 'sugar',
-      name: 'Sugar tablet',
-      times: [8 * 60],
-      food: FoodTiming.beforeFood,
-    );
+    final sugar = med(id: 'sugar', name: 'Water the plants', times: [8 * 60]);
 
     AppData data(AppLanguage language) =>
         AppData([bp, sugar], DoseLog.empty, AppSettings(language: language));
@@ -74,31 +77,18 @@ void main() {
       expect(ids.toSet(), hasLength(ids.length));
     });
 
-    test(
-      'text lists each medicine with dose and food, in the chosen language',
-      () {
-        final en = buildAlarmEntries(
-          data(AppLanguage.english),
-          at(day1, 7),
-        ).first;
-        expect(en.title, 'Time for your medicine');
-        expect(
-          en.body,
-          'BP tablet: 1 tablet, After food\nSugar tablet: 1 tablet, Before food',
-        );
-        final te = buildAlarmEntries(
-          data(AppLanguage.telugu),
-          at(day1, 7),
-        ).first;
-        expect(te.title, 'మందు వేసుకునే సమయం');
-        expect(te.body, contains('భోజనానికి ముందు'));
-        final hi = buildAlarmEntries(
-          data(AppLanguage.hindi),
-          at(day1, 7),
-        ).first;
-        expect(hi.body, contains('खाने के बाद'));
-      },
-    );
+    test('text lists each reminder, in the chosen language', () {
+      final en = buildAlarmEntries(
+        data(AppLanguage.english),
+        at(day1, 7),
+      ).first;
+      expect(en.title, 'Reminder');
+      expect(en.body, 'Morning walk\nWater the plants');
+      final te = buildAlarmEntries(data(AppLanguage.telugu), at(day1, 7)).first;
+      expect(te.title, 'రిమైండర్');
+      final hi = buildAlarmEntries(data(AppLanguage.hindi), at(day1, 7)).first;
+      expect(hi.title, 'रिमाइंडर');
+    });
 
     test('a time zone change keeps 8:00 at 8:00', () {
       // The phone moves from IST to UAE time: the plan is the same wall time;

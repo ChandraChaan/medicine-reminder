@@ -103,7 +103,7 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'Medicine Reminder'**
+  /// **'Daily Reminder'**
   String get appTitle;
 
   /// No description provided for @languageEnglish.
@@ -199,7 +199,7 @@ abstract class AppLocalizations {
   /// No description provided for @onboardingBody.
   ///
   /// In en, this message translates to:
-  /// **'At medicine time the phone rings, shows the medicine in big letters and reads it out. It works even when the phone is locked.'**
+  /// **'At reminder time the phone rings, shows the reminder in big letters and reads it out. It works even when the phone is locked.'**
   String get onboardingBody;
 
   /// No description provided for @onboardingPrivacy.
@@ -229,31 +229,31 @@ abstract class AppLocalizations {
   /// No description provided for @nothingToday.
   ///
   /// In en, this message translates to:
-  /// **'No medicines today.'**
+  /// **'No reminders today.'**
   String get nothingToday;
 
   /// No description provided for @allDoneToday.
   ///
   /// In en, this message translates to:
-  /// **'All of today\'s medicines are done. Well done!'**
+  /// **'All of today\'s reminders are done. Well done!'**
   String get allDoneToday;
 
   /// No description provided for @noMedicinesTitle.
   ///
   /// In en, this message translates to:
-  /// **'No medicines yet'**
+  /// **'No reminders yet'**
   String get noMedicinesTitle;
 
   /// No description provided for @noMedicinesBody.
   ///
   /// In en, this message translates to:
-  /// **'Ask a family member to add the medicines. Each one takes about a minute.'**
+  /// **'Add the things to remember, like a walk, a phone call or drinking water. Each one takes about a minute.'**
   String get noMedicinesBody;
 
   /// No description provided for @addMedicine.
   ///
   /// In en, this message translates to:
-  /// **'Add medicine'**
+  /// **'Add reminder'**
   String get addMedicine;
 
   /// No description provided for @history.
@@ -301,7 +301,7 @@ abstract class AppLocalizations {
   /// No description provided for @statusTaken.
   ///
   /// In en, this message translates to:
-  /// **'Taken at {time}'**
+  /// **'Done at {time}'**
   String statusTaken(String time);
 
   /// No description provided for @statusSkipped.
@@ -319,7 +319,7 @@ abstract class AppLocalizations {
   /// No description provided for @statusDue.
   ///
   /// In en, this message translates to:
-  /// **'Take now'**
+  /// **'Do it now'**
   String get statusDue;
 
   /// No description provided for @statusSnoozed.
@@ -333,24 +333,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Later today'**
   String get statusUpcoming;
-
-  /// No description provided for @refillDaysLeft.
-  ///
-  /// In en, this message translates to:
-  /// **'{name}: {days, plural, =1{1 day left} other{{days} days left}}. Buy more soon.'**
-  String refillDaysLeft(String name, int days);
-
-  /// No description provided for @refillRunOut.
-  ///
-  /// In en, this message translates to:
-  /// **'{name} has run out. Buy more today.'**
-  String refillRunOut(String name);
-
-  /// No description provided for @refillNoticeTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Time to buy {name}'**
-  String refillNoticeTitle(String name);
 
   /// No description provided for @bannerNotifications.
   ///
@@ -379,7 +361,7 @@ abstract class AppLocalizations {
   /// No description provided for @alarmTitle.
   ///
   /// In en, this message translates to:
-  /// **'Time for your medicine'**
+  /// **'Reminder'**
   String get alarmTitle;
 
   /// No description provided for @alarmCount.
@@ -403,13 +385,13 @@ abstract class AppLocalizations {
   /// No description provided for @alarmNothingDue.
   ///
   /// In en, this message translates to:
-  /// **'No medicine is due right now.'**
+  /// **'Nothing is due right now.'**
   String get alarmNothingDue;
 
   /// No description provided for @taken.
   ///
   /// In en, this message translates to:
-  /// **'Taken'**
+  /// **'Done'**
   String get taken;
 
   /// No description provided for @snooze.
@@ -430,142 +412,46 @@ abstract class AppLocalizations {
   /// **'Photo of {name}'**
   String medicinePhoto(String name);
 
-  /// No description provided for @doseAmount.
-  ///
-  /// In en, this message translates to:
-  /// **'{amount} {unit}'**
-  String doseAmount(String amount, String unit);
-
-  /// No description provided for @unitTablet.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{tablet} other{tablets}}'**
-  String unitTablet(int count);
-
-  /// No description provided for @unitCapsule.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{capsule} other{capsules}}'**
-  String unitCapsule(int count);
-
-  /// No description provided for @unitMl.
-  ///
-  /// In en, this message translates to:
-  /// **'ml'**
-  String get unitMl;
-
-  /// No description provided for @unitDrops.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{drop} other{drops}}'**
-  String unitDrops(int count);
-
-  /// No description provided for @unitPuff.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{puff} other{puffs}}'**
-  String unitPuff(int count);
-
-  /// No description provided for @unitInjection.
-  ///
-  /// In en, this message translates to:
-  /// **'{count, plural, =1{injection} other{injections}}'**
-  String unitInjection(int count);
-
-  /// No description provided for @foodBefore.
-  ///
-  /// In en, this message translates to:
-  /// **'Before food'**
-  String get foodBefore;
-
-  /// No description provided for @foodAfter.
-  ///
-  /// In en, this message translates to:
-  /// **'After food'**
-  String get foodAfter;
-
-  /// No description provided for @foodWith.
-  ///
-  /// In en, this message translates to:
-  /// **'With food'**
-  String get foodWith;
-
-  /// No description provided for @foodAny.
-  ///
-  /// In en, this message translates to:
-  /// **'Any time'**
-  String get foodAny;
-
-  /// No description provided for @foodBeforeSpoken.
-  ///
-  /// In en, this message translates to:
-  /// **'before food'**
-  String get foodBeforeSpoken;
-
-  /// No description provided for @foodAfterSpoken.
-  ///
-  /// In en, this message translates to:
-  /// **'after food'**
-  String get foodAfterSpoken;
-
-  /// No description provided for @foodWithSpoken.
-  ///
-  /// In en, this message translates to:
-  /// **'with food'**
-  String get foodWithSpoken;
-
   /// No description provided for @speechOne.
   ///
   /// In en, this message translates to:
-  /// **'It\'s time for your {name}, {food}.'**
-  String speechOne(String name, String food);
-
-  /// No description provided for @speechOneNoFood.
-  ///
-  /// In en, this message translates to:
-  /// **'It\'s time for your {name}.'**
-  String speechOneNoFood(String name);
+  /// **'It\'s time for {name}.'**
+  String speechOne(String name);
 
   /// No description provided for @speechMany.
   ///
   /// In en, this message translates to:
-  /// **'It\'s time for your medicines.'**
+  /// **'It\'s time for these reminders:'**
   String get speechMany;
 
   /// No description provided for @speechItem.
   ///
   /// In en, this message translates to:
-  /// **'{name}, {food}.'**
-  String speechItem(String name, String food);
-
-  /// No description provided for @speechItemNoFood.
-  ///
-  /// In en, this message translates to:
   /// **'{name}.'**
-  String speechItemNoFood(String name);
+  String speechItem(String name);
 
   /// No description provided for @channelAlarms.
   ///
   /// In en, this message translates to:
-  /// **'Medicine alarms'**
+  /// **'Reminder alarms'**
   String get channelAlarms;
 
   /// No description provided for @channelNotices.
   ///
   /// In en, this message translates to:
-  /// **'Refill and other notices'**
+  /// **'Other notices'**
   String get channelNotices;
 
   /// No description provided for @medicinesTitle.
   ///
   /// In en, this message translates to:
-  /// **'Medicines'**
+  /// **'Reminders'**
   String get medicinesTitle;
 
   /// No description provided for @medicinesEmpty.
   ///
   /// In en, this message translates to:
-  /// **'No medicines yet. Add the first one.'**
+  /// **'No reminders yet. Add the first one.'**
   String get medicinesEmpty;
 
   /// No description provided for @deleteMedicineTitle.
@@ -577,26 +463,8 @@ abstract class AppLocalizations {
   /// No description provided for @deleteMedicineBody.
   ///
   /// In en, this message translates to:
-  /// **'Its reminders and history will be removed from this phone.'**
+  /// **'Its alarms and history will be removed from this phone.'**
   String get deleteMedicineBody;
-
-  /// No description provided for @boughtMore.
-  ///
-  /// In en, this message translates to:
-  /// **'Bought more'**
-  String get boughtMore;
-
-  /// No description provided for @boughtMoreTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'How many did you buy?'**
-  String get boughtMoreTitle;
-
-  /// No description provided for @stockLeft.
-  ///
-  /// In en, this message translates to:
-  /// **'{amount} left'**
-  String stockLeft(String amount);
 
   /// No description provided for @untilDate.
   ///
@@ -619,25 +487,25 @@ abstract class AppLocalizations {
   /// No description provided for @stepName.
   ///
   /// In en, this message translates to:
-  /// **'What is the medicine called?'**
+  /// **'What should I remind you about?'**
   String get stepName;
 
   /// No description provided for @nameLabel.
   ///
   /// In en, this message translates to:
-  /// **'Medicine name'**
+  /// **'Reminder name'**
   String get nameLabel;
 
   /// No description provided for @nameHint.
   ///
   /// In en, this message translates to:
-  /// **'For example: BP tablet'**
+  /// **'For example: Evening walk'**
   String get nameHint;
 
   /// No description provided for @sampleMedicine.
   ///
   /// In en, this message translates to:
-  /// **'BP tablet'**
+  /// **'Evening walk'**
   String get sampleMedicine;
 
   /// No description provided for @nameRequired.
@@ -667,37 +535,13 @@ abstract class AppLocalizations {
   /// No description provided for @photoHelp.
   ///
   /// In en, this message translates to:
-  /// **'A photo of the strip helps pick the right medicine.'**
+  /// **'A photo makes the reminder easy to recognise.'**
   String get photoHelp;
-
-  /// No description provided for @stepDose.
-  ///
-  /// In en, this message translates to:
-  /// **'How much each time?'**
-  String get stepDose;
-
-  /// No description provided for @decrease.
-  ///
-  /// In en, this message translates to:
-  /// **'Less'**
-  String get decrease;
-
-  /// No description provided for @increase.
-  ///
-  /// In en, this message translates to:
-  /// **'More'**
-  String get increase;
-
-  /// No description provided for @unitLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Type'**
-  String get unitLabel;
 
   /// No description provided for @stepTimes.
   ///
   /// In en, this message translates to:
-  /// **'When should it be taken?'**
+  /// **'When should it ring?'**
   String get stepTimes;
 
   /// No description provided for @addTime.
@@ -717,12 +561,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pick at least one time.'**
   String get timesRequired;
-
-  /// No description provided for @stepFood.
-  ///
-  /// In en, this message translates to:
-  /// **'Before or after food?'**
-  String get stepFood;
 
   /// No description provided for @stepDays.
   ///
@@ -778,42 +616,6 @@ abstract class AppLocalizations {
   /// **'The last day can\'t be before the first day.'**
   String get endBeforeStart;
 
-  /// No description provided for @stepStock.
-  ///
-  /// In en, this message translates to:
-  /// **'Count the tablets?'**
-  String get stepStock;
-
-  /// No description provided for @stockHelp.
-  ///
-  /// In en, this message translates to:
-  /// **'The app counts down after each dose and warns before they run out.'**
-  String get stockHelp;
-
-  /// No description provided for @dontCount.
-  ///
-  /// In en, this message translates to:
-  /// **'Don\'t count'**
-  String get dontCount;
-
-  /// No description provided for @countThem.
-  ///
-  /// In en, this message translates to:
-  /// **'Count them'**
-  String get countThem;
-
-  /// No description provided for @stockInHand.
-  ///
-  /// In en, this message translates to:
-  /// **'How many are there now?'**
-  String get stockInHand;
-
-  /// No description provided for @warnDaysBefore.
-  ///
-  /// In en, this message translates to:
-  /// **'Warn {days, plural, =1{1 day} other{{days} days}} before they run out'**
-  String warnDaysBefore(int days);
-
   /// No description provided for @stepReview.
   ///
   /// In en, this message translates to:
@@ -832,18 +634,6 @@ abstract class AppLocalizations {
   /// **'Days'**
   String get reviewDays;
 
-  /// No description provided for @reviewStock.
-  ///
-  /// In en, this message translates to:
-  /// **'Count'**
-  String get reviewStock;
-
-  /// No description provided for @notCounted.
-  ///
-  /// In en, this message translates to:
-  /// **'Not counted'**
-  String get notCounted;
-
   /// No description provided for @settingsLanguage.
   ///
   /// In en, this message translates to:
@@ -859,7 +649,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsSpeakHelp.
   ///
   /// In en, this message translates to:
-  /// **'Reads out the medicine name and food timing when the alarm rings.'**
+  /// **'Reads out the reminder name when the alarm rings.'**
   String get settingsSpeakHelp;
 
   /// No description provided for @testVoice.
@@ -877,7 +667,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsMissedAfter.
   ///
   /// In en, this message translates to:
-  /// **'Count a dose as missed after'**
+  /// **'Count a reminder as missed after'**
   String get settingsMissedAfter;
 
   /// No description provided for @minutesCount.
@@ -940,12 +730,6 @@ abstract class AppLocalizations {
   /// **'Everything stays on this phone. No account, no internet, no ads, no tracking.'**
   String get aboutPrivacy;
 
-  /// No description provided for @aboutDisclaimer.
-  ///
-  /// In en, this message translates to:
-  /// **'This app is a reminder aid, not medical advice. Always follow the doctor\'s instructions.'**
-  String get aboutDisclaimer;
-
   /// No description provided for @aboutSource.
   ///
   /// In en, this message translates to:
@@ -961,13 +745,13 @@ abstract class AppLocalizations {
   /// No description provided for @historySummary.
   ///
   /// In en, this message translates to:
-  /// **'Taken {taken} of {total} doses this month'**
+  /// **'Done {taken} of {total} reminders this month'**
   String historySummary(int taken, int total);
 
   /// No description provided for @historyEmpty.
   ///
   /// In en, this message translates to:
-  /// **'No doses this month.'**
+  /// **'No reminders this month.'**
   String get historyEmpty;
 
   /// No description provided for @previousMonth.
@@ -985,7 +769,7 @@ abstract class AppLocalizations {
   /// No description provided for @legendAllTaken.
   ///
   /// In en, this message translates to:
-  /// **'All taken'**
+  /// **'All done'**
   String get legendAllTaken;
 
   /// No description provided for @legendSomeMissed.
@@ -1003,13 +787,13 @@ abstract class AppLocalizations {
   /// No description provided for @historyDay.
   ///
   /// In en, this message translates to:
-  /// **'{date}: {taken} taken, {missed} missed, {skipped} skipped'**
+  /// **'{date}: {taken} done, {missed} missed, {skipped} skipped'**
   String historyDay(String date, int taken, int missed, int skipped);
 
   /// No description provided for @historyDayNoDoses.
   ///
   /// In en, this message translates to:
-  /// **'{date}: no doses'**
+  /// **'{date}: no reminders'**
   String historyDayNoDoses(String date);
 
   /// No description provided for @familyCheckTitle.
@@ -1021,13 +805,13 @@ abstract class AppLocalizations {
   /// No description provided for @familyCheckIntro.
   ///
   /// In en, this message translates to:
-  /// **'If a dose is not marked Taken within the missed-dose time, this phone can let one or two family members know. It stays off until you turn it on here.'**
+  /// **'If a reminder is not marked Done within the missed time, this phone can let one or two family members know. It stays off until you turn it on here.'**
   String get familyCheckIntro;
 
   /// No description provided for @familyCheckEnable.
   ///
   /// In en, this message translates to:
-  /// **'Tell family about missed doses'**
+  /// **'Tell family about missed reminders'**
   String get familyCheckEnable;
 
   /// No description provided for @familyPersonLabel.
@@ -1105,7 +889,7 @@ abstract class AppLocalizations {
   /// No description provided for @familySmsConsent.
   ///
   /// In en, this message translates to:
-  /// **'I agree that this phone may send an SMS to these numbers when a dose is missed.'**
+  /// **'I agree that this phone may send an SMS to these numbers when a reminder is missed.'**
   String get familySmsConsent;
 
   /// No description provided for @familySmsPermission.
@@ -1147,13 +931,13 @@ abstract class AppLocalizations {
   /// No description provided for @familyMessage.
   ///
   /// In en, this message translates to:
-  /// **'Medicine Reminder: {person} has not marked {medicines} (due at {time}) as taken. Please check on them.'**
+  /// **'Daily Reminder: {person} has not marked {medicines} (due at {time}) as done. Please check on them.'**
   String familyMessage(String person, String medicines, String time);
 
   /// No description provided for @familyTestMessage.
   ///
   /// In en, this message translates to:
-  /// **'Medicine Reminder: this is a test. You will get a message like this if {person} misses a dose.'**
+  /// **'Daily Reminder: this is a test. You will get a message like this if {person} misses a reminder.'**
   String familyTestMessage(String person);
 
   /// No description provided for @familyPersonFallback.
@@ -1171,7 +955,7 @@ abstract class AppLocalizations {
   /// No description provided for @familyNotifySentBody.
   ///
   /// In en, this message translates to:
-  /// **'An SMS about the missed dose was sent to your family.'**
+  /// **'An SMS about the missed reminder was sent to your family.'**
   String get familyNotifySentBody;
 
   /// No description provided for @familyNotifyShareTitle.
@@ -1183,7 +967,7 @@ abstract class AppLocalizations {
   /// No description provided for @familyNotifyShareBody.
   ///
   /// In en, this message translates to:
-  /// **'A dose was missed. Tap to send the message.'**
+  /// **'A reminder was missed. Tap to send the message.'**
   String get familyNotifyShareBody;
 
   /// No description provided for @familyNeedsNumber.

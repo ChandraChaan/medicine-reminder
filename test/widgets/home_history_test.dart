@@ -8,12 +8,7 @@ import '../helpers/pump_app.dart';
 import '../helpers/test_data.dart';
 
 void main() {
-  final bp = med(
-    id: 'bp',
-    times: [8 * 60, 20 * 60],
-    stockQuarters: 3 * 4,
-    refillWarnDays: 5,
-  );
+  final bp = med(id: 'bp', times: [8 * 60, 20 * 60]);
 
   testWidgets("home shows today's doses with status in words", (tester) async {
     final t = TestApp(
@@ -24,11 +19,9 @@ void main() {
     await t.pump(tester);
     expect(find.text('Missed'), findsOneWidget);
     expect(find.text('Later today'), findsOneWidget);
-    // 3 tablets, twice a day: runs out in a day and a half.
-    expect(find.textContaining('Buy more soon'), findsOneWidget);
   });
 
-  testWidgets('marking a missed dose as taken from home, then undo', (
+  testWidgets('marking a missed reminder as done from home, then undo', (
     tester,
   ) async {
     final t = TestApp(clock: FakeClock(at(day1, 9, 30)), medicines: [bp]);
@@ -37,16 +30,13 @@ void main() {
     await TestApp.settle(tester);
     await tester.tap(find.byKey(const Key('dose-taken')));
     await TestApp.settle(tester);
-    expect(find.textContaining('Taken at'), findsOneWidget);
-    expect(t.medicines.medicines.single.stockQuarters, 8);
-    expect(t.bridge.notices, isNotEmpty);
+    expect(find.textContaining('Done at'), findsOneWidget);
 
-    await tester.tap(find.textContaining('Taken at'));
+    await tester.tap(find.textContaining('Done at'));
     await TestApp.settle(tester);
     await tester.tap(find.text('Undo'));
     await TestApp.settle(tester);
     expect(t.log.events, isEmpty);
-    expect(t.medicines.medicines.single.stockQuarters, 12);
   });
 
   testWidgets('permission problems show a banner with a fix button', (
@@ -90,9 +80,9 @@ void main() {
     );
     await t.pump(tester, location: '/history');
     expect(find.text('March 2026'), findsOneWidget);
-    expect(find.text('Taken 4 of 5 doses this month'), findsOneWidget);
+    expect(find.text('Done 4 of 5 reminders this month'), findsOneWidget);
     expect(
-      find.bySemanticsLabel(RegExp(r'^Mar 12, 2026: 0 taken, 1 missed')),
+      find.bySemanticsLabel(RegExp(r'^Mar 12, 2026: 0 done, 1 missed')),
       findsOneWidget,
     );
   });

@@ -10,12 +10,8 @@ import '../helpers/pump_app.dart';
 import '../helpers/test_data.dart';
 
 void main() {
-  final bp = med(id: 'bp', name: 'BP tablet', stockQuarters: 40);
-  final sugar = med(
-    id: 'sugar',
-    name: 'Sugar tablet',
-    food: FoodTiming.beforeFood,
-  );
+  final bp = med(id: 'bp', name: 'Morning walk');
+  final sugar = med(id: 'sugar', name: 'Water the plants');
 
   TestApp app({
     AppSettings settings = const AppSettings(onboarded: true),
@@ -36,34 +32,27 @@ void main() {
     expect(t.speech.spoken, isEmpty);
     await tester.pump(AlarmScreen.ringFor);
     await TestApp.settle(tester);
-    expect(find.text('Time for your medicine'), findsOneWidget);
-    expect(find.text('BP tablet'), findsOneWidget);
+    expect(find.text('Reminder'), findsOneWidget);
+    expect(find.text('Morning walk'), findsOneWidget);
     expect(find.text('1 of 2'), findsOneWidget);
-    expect(find.text('After food'), findsOneWidget);
     expect(find.byKey(const Key('dose-taken')), findsOneWidget);
     expect(find.byKey(const Key('dose-snooze')), findsOneWidget);
     expect(find.byKey(const Key('dose-skip')), findsOneWidget);
     expect(t.bridge.stopRingingCalls, 1);
     expect(t.speech.spoken.single, (
-      "It's time for your medicines. BP tablet, after food. Sugar tablet, before food.",
+      "It's time for these reminders: Morning walk. Water the plants.",
       'en-IN',
     ));
   });
 
-  testWidgets('Taken records the dose, counts stock and moves to the next', (
-    tester,
-  ) async {
+  testWidgets('Done records it and moves to the next', (tester) async {
     final t = app();
     await t.pump(tester, location: '/alarm');
     await tester.tap(find.byKey(const Key('dose-taken')));
     await TestApp.settle(tester);
     expect(t.log.events.single.action, DoseAction.taken);
     expect(t.log.events.single.key.medicineId, 'bp');
-    expect(
-      t.medicines.medicines.firstWhere((m) => m.id == 'bp').stockQuarters,
-      36,
-    );
-    expect(find.text('Sugar tablet'), findsOneWidget);
+    expect(find.text('Water the plants'), findsOneWidget);
     expect(find.text('1 of 2'), findsNothing);
   });
 
@@ -143,11 +132,8 @@ void main() {
     await t.pump(tester, location: '/alarm');
     await tester.pump(AlarmScreen.ringFor);
     await TestApp.settle(tester);
-    expect(find.text('మందు వేసుకునే సమయం'), findsOneWidget);
-    expect(t.speech.spoken.single, (
-      'మీ BP tablet వేసుకునే సమయం అయింది, భోజనం తర్వాత.',
-      'te-IN',
-    ));
+    expect(find.text('రిమైండర్'), findsOneWidget);
+    expect(t.speech.spoken.single, ('Morning walk సమయం అయింది.', 'te-IN'));
   });
 
   testWidgets('falls back to English speech without a voice', (tester) async {
@@ -168,7 +154,7 @@ void main() {
   ) async {
     final t = TestApp(clock: FakeClock(at(day1, 15)), medicines: [bp]);
     await t.pump(tester, location: '/alarm');
-    expect(find.text('No medicine is due right now.'), findsOneWidget);
+    expect(find.text('Nothing is due right now.'), findsOneWidget);
     expect(t.bridge.stopRingingCalls, 1);
     expect(t.speech.spoken, isEmpty);
   });

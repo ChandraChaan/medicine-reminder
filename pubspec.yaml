@@ -1,7 +1,7 @@
 name: medicine_reminder
-description: "A medicine reminder for elderly parents: loud alarms, spoken reminders in Telugu, Hindi or English, and an optional family check. Everything stays on the phone."
+description: "Daily reminders that ring like an alarm: big text, spoken reminders in Telugu, Hindi or English, and an optional family check. Everything stays on the phone."
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.1.0+2
 
 environment:
   sdk: ^3.12.2

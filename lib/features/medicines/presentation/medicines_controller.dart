@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/providers.dart';
-import '../../doses/domain/refill.dart';
 import '../domain/medicine.dart';
 
 final medicinesProvider =
@@ -47,38 +46,5 @@ class MedicinesController extends AsyncNotifier<List<Medicine>> {
       for (final m in current)
         if (m.id != id) m,
     ]);
-  }
-
-  /// Adds bought stock (in quarters) to a counted medicine.
-  Future<void> addStock(String id, int quarters) async {
-    final medicine = byId(id);
-    if (medicine == null) return;
-    await save(
-      medicine.copyWith(
-        stockQuarters: () => (medicine.stockQuarters ?? 0) + quarters,
-      ),
-    );
-  }
-
-  /// Takes one dose out of the count. Returns the updated medicine.
-  Future<Medicine?> useDose(String id) async {
-    final medicine = byId(id);
-    final stock = medicine?.stockQuarters;
-    if (medicine == null || stock == null) return medicine;
-    final updated = medicine.copyWith(
-      stockQuarters: () => stockAfterDose(stock, medicine.doseQuarters),
-    );
-    await save(updated);
-    return updated;
-  }
-
-  /// Puts one dose back after an "Undo".
-  Future<void> returnDose(String id) async {
-    final medicine = byId(id);
-    final stock = medicine?.stockQuarters;
-    if (medicine == null || stock == null) return;
-    await save(
-      medicine.copyWith(stockQuarters: () => stock + medicine.doseQuarters),
-    );
   }
 }

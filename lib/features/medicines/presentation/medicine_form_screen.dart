@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -134,11 +133,8 @@ class _MedicineFormScreenState extends ConsumerState<_MedicineForm> {
             const SizedBox(height: 20),
             switch (_step) {
               WizardStep.name => _NameStep(id: widget.medicineId),
-              WizardStep.dose => _DoseStep(id: widget.medicineId),
               WizardStep.times => _TimesStep(id: widget.medicineId),
-              WizardStep.food => _FoodStep(id: widget.medicineId),
               WizardStep.days => _DaysStep(id: widget.medicineId),
-              WizardStep.stock => _StockStep(id: widget.medicineId),
               WizardStep.review => _ReviewStep(
                 id: widget.medicineId,
                 onEdit: _goTo,
@@ -297,66 +293,6 @@ class _NameStepState extends ConsumerState<_NameStep> {
   }
 }
 
-class _DoseStep extends ConsumerWidget {
-  const _DoseStep({required this.id});
-
-  final String? id;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-    final draft = ref.watch(medicineDraftProvider(id));
-    final controller = ref.read(medicineDraftProvider(id).notifier);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _Question(l10n.stepDose),
-        Row(
-          children: [
-            IconButton.filledTonal(
-              key: const Key('dose-less'),
-              tooltip: l10n.decrease,
-              iconSize: 36,
-              onPressed: () => controller.changeDose(-1),
-              icon: const Icon(Icons.remove_rounded),
-            ),
-            Expanded(
-              child: Text(
-                amountLabel(l10n, draft.unit, draft.doseQuarters),
-                key: const Key('dose-amount'),
-                style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.center,
-              ),
-            ),
-            IconButton.filledTonal(
-              key: const Key('dose-more'),
-              tooltip: l10n.increase,
-              iconSize: 36,
-              onPressed: () => controller.changeDose(1),
-              icon: const Icon(Icons.add_rounded),
-            ),
-          ],
-        ),
-        const SizedBox(height: 24),
-        Text(l10n.unitLabel, style: Theme.of(context).textTheme.titleLarge),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 10,
-          runSpacing: 10,
-          children: [
-            for (final unit in DoseUnit.values)
-              ChoiceChip(
-                label: Text(unitLabel(l10n, unit, 4)),
-                selected: draft.unit == unit,
-                onSelected: (_) => controller.setUnit(unit),
-              ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
 class _TimesStep extends ConsumerWidget {
   const _TimesStep({required this.id});
 
@@ -426,46 +362,6 @@ class _TimesStep extends ConsumerWidget {
               },
             ),
           ],
-        ),
-      ],
-    );
-  }
-}
-
-class _FoodStep extends ConsumerWidget {
-  const _FoodStep({required this.id});
-
-  final String? id;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = context.l10n;
-    final draft = ref.watch(medicineDraftProvider(id));
-    final controller = ref.read(medicineDraftProvider(id).notifier);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _Question(l10n.stepFood),
-        RadioGroup<FoodTiming>(
-          groupValue: draft.food,
-          onChanged: (food) {
-            if (food != null) controller.setFood(food);
-          },
-          child: Column(
-            children: [
-              for (final food in FoodTiming.values)
-                Card(
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: RadioListTile<FoodTiming>(
-                    value: food,
-                    title: Text(
-                      foodLabel(l10n, food),
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  ),
-                ),
-            ],
-          ),
         ),
       ],
     );
@@ -586,94 +482,6 @@ class _DaysStep extends ConsumerWidget {
   }
 }
 
-class _StockStep extends ConsumerStatefulWidget {
-  const _StockStep({required this.id});
-
-  final String? id;
-
-  @override
-  ConsumerState<_StockStep> createState() => _StockStepState();
-}
-
-class _StockStepState extends ConsumerState<_StockStep> {
-  late final TextEditingController _stock;
-
-  @override
-  void initState() {
-    super.initState();
-    _stock = TextEditingController(
-      text: '${ref.read(medicineDraftProvider(widget.id)).stockUnits}',
-    );
-  }
-
-  @override
-  void dispose() {
-    _stock.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final draft = ref.watch(medicineDraftProvider(widget.id));
-    final controller = ref.read(medicineDraftProvider(widget.id).notifier);
-    final text = Theme.of(context).textTheme;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _Question(l10n.stepStock),
-        Text(l10n.stockHelp, style: text.bodyLarge),
-        const SizedBox(height: 16),
-        SegmentedButton<bool>(
-          segments: [
-            ButtonSegment(value: false, label: Text(l10n.dontCount)),
-            ButtonSegment(value: true, label: Text(l10n.countThem)),
-          ],
-          selected: {draft.counting},
-          onSelectionChanged: (choice) => controller.setCounting(choice.first),
-        ),
-        if (draft.counting) ...[
-          const SizedBox(height: 20),
-          TextField(
-            key: const Key('wizard-stock'),
-            controller: _stock,
-            keyboardType: TextInputType.number,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            style: text.headlineSmall,
-            decoration: InputDecoration(
-              labelText: l10n.stockInHand,
-              suffixText: unitLabel(l10n, draft.unit, 8),
-            ),
-            onChanged: (value) => controller.setStock(int.tryParse(value) ?? 0),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              IconButton.filledTonal(
-                tooltip: l10n.decrease,
-                onPressed: () => controller.changeWarnDays(-1),
-                icon: const Icon(Icons.remove_rounded),
-              ),
-              Expanded(
-                child: Text(
-                  l10n.warnDaysBefore(draft.refillWarnDays),
-                  style: text.titleMedium,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              IconButton.filledTonal(
-                tooltip: l10n.increase,
-                onPressed: () => controller.changeWarnDays(1),
-                icon: const Icon(Icons.add_rounded),
-              ),
-            ],
-          ),
-        ],
-      ],
-    );
-  }
-}
-
 class _ReviewStep extends ConsumerWidget {
   const _ReviewStep({required this.id, required this.onEdit});
 
@@ -721,30 +529,15 @@ class _ReviewStep extends ConsumerWidget {
         ),
         const SizedBox(height: 16),
         row(
-          WizardStep.dose,
-          l10n.stepDose,
-          amountLabel(l10n, draft.unit, draft.doseQuarters),
-        ),
-        row(
           WizardStep.times,
           l10n.reviewTimes,
           [for (final t in draft.times) formatTimeOf(context, t)].join(', '),
         ),
-        row(WizardStep.food, l10n.stepFood, foodLabel(l10n, draft.food)),
         row(
           WizardStep.days,
           l10n.reviewDays,
           '$days\n${formatDate(l10n, draft.startDate)} – '
           '${end == null ? l10n.noEndDateShort : formatDate(l10n, end)}',
-        ),
-        row(
-          WizardStep.stock,
-          l10n.reviewStock,
-          draft.counting
-              ? l10n.stockLeft(
-                  '${draft.stockUnits} ${unitLabel(l10n, draft.unit, draft.stockUnits * 4)}',
-                )
-              : l10n.notCounted,
         ),
       ],
     );

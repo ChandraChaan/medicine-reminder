@@ -9,13 +9,8 @@ import '../helpers/test_data.dart';
 /// 200% system font size.
 void main() {
   final medicines = [
-    med(
-      id: 'bp',
-      name: 'BP tablet',
-      times: [8 * 60, 20 * 60],
-      stockQuarters: 8,
-    ),
-    med(id: 'sugar', name: 'Metformin 500', times: [8 * 60]),
+    med(id: 'bp', name: 'Morning walk', times: [8 * 60, 20 * 60]),
+    med(id: 'sugar', name: 'Call Ravi', times: [8 * 60]),
   ];
   const screens = [
     '/',

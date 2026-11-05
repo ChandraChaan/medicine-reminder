@@ -222,17 +222,6 @@ class _DosePrompt extends ConsumerWidget {
                   style: text.displaySmall,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  doseLabel(l10n, medicine),
-                  style: text.headlineMedium,
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  foodLabel(l10n, medicine.food),
-                  style: text.headlineSmall?.copyWith(color: scheme.secondary),
-                  textAlign: TextAlign.center,
-                ),
                 const Spacer(),
                 const SizedBox(height: 20),
                 TakenButton(

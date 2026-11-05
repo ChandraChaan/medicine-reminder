@@ -80,7 +80,7 @@
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="https" android:host="wa.me" />
         </intent>
-        <!-- Camera app for the medicine photo. -->
+        <!-- Camera app for the reminder photo. -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
