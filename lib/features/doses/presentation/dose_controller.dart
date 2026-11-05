@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meta/meta.dart';
 
-import '../../../core/l10n/l10n.dart';
 import '../../../core/providers.dart';
 import '../../../core/time/clock.dart';
 import '../../medicines/domain/medicine.dart';
@@ -9,7 +8,6 @@ import '../../medicines/presentation/medicines_controller.dart';
 import '../../settings/domain/app_settings.dart';
 import '../../settings/presentation/settings_controller.dart';
 import '../domain/dose.dart';
-import '../domain/refill.dart';
 import '../domain/schedule.dart';
 
 /// Medicines, the dose log and settings, loaded together.
@@ -73,29 +71,6 @@ final pendingDosesProvider = Provider<AsyncValue<List<DoseState>>>((ref) {
   );
 });
 
-/// Counted medicines that are running low, most urgent first.
-final refillWarningsProvider =
-    Provider<AsyncValue<List<(Medicine, RefillForecast)>>>((ref) {
-      final data = ref.watch(appDataProvider);
-      final now =
-          ref.watch(nowProvider).value ?? ref.read(clockProvider).nowLocal();
-      return data.whenData((d) {
-        final warnings = [
-          for (final medicine in d.medicines)
-            if (forecastRefill(
-                  medicine,
-                  d.log,
-                  now,
-                  missedAfterMinutes: d.missedAfter,
-                )
-                case final forecast? when forecast.needsRefill)
-              (medicine, forecast),
-        ];
-        warnings.sort((a, b) => a.$2.daysLeft!.compareTo(b.$2.daysLeft!));
-        return warnings;
-      });
-    });
-
 /// Records what the person did with each dose.
 class DoseEventsController extends AsyncNotifier<List<DoseEvent>> {
   @override
@@ -115,10 +90,6 @@ class DoseEventsController extends AsyncNotifier<List<DoseEvent>> {
     await _add(
       DoseEvent(key: dose.key, action: DoseAction.taken, atUtc: _nowUtc),
     );
-    final updated = await ref
-        .read(medicinesProvider.notifier)
-        .useDose(dose.medicine.id);
-    if (updated != null) await _warnIfLow(updated);
   }
 
   Future<void> skip(DoseOccurrence dose) => _add(
@@ -137,39 +108,14 @@ class DoseEventsController extends AsyncNotifier<List<DoseEvent>> {
     );
   }
 
-  /// Clears a mistaken Taken or Skip; a Taken dose goes back into the count.
-  Future<void> undo(DoseOccurrence dose, {required bool wasTaken}) async {
+  /// Clears a mistaken Done or Skip.
+  Future<void> undo(DoseOccurrence dose) async {
     final current = await future;
     await ref.read(doseLogRepositoryProvider).clearAnswer(dose.key);
-    if (wasTaken) {
-      await ref.read(medicinesProvider.notifier).returnDose(dose.medicine.id);
-    }
     if (!ref.mounted) return;
     state = AsyncData([
       for (final e in current)
         if (e.key != dose.key || e.action == DoseAction.snoozed) e,
     ]);
-  }
-
-  Future<void> _warnIfLow(Medicine medicine) async {
-    final settings = await ref.read(settingsProvider.future);
-    final forecast = forecastRefill(
-      medicine,
-      DoseLog(await future),
-      ref.read(clockProvider).nowLocal(),
-      missedAfterMinutes: settings.missedAfterMinutes,
-    );
-    if (forecast == null || !forecast.needsRefill) return;
-    final l10n = l10nFor(settings.language);
-    final days = forecast.daysLeft!;
-    await ref
-        .read(alarmBridgeProvider)
-        .showNotice(
-          id: 9000 + medicine.id.hashCode.abs() % 1000,
-          title: l10n.refillNoticeTitle(medicine.name),
-          body: days == 0
-              ? l10n.refillRunOut(medicine.name)
-              : l10n.refillDaysLeft(medicine.name, days),
-        );
   }
 }

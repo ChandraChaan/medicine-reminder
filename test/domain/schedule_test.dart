@@ -165,7 +165,7 @@ void main() {
 
   group('pendingDoses (what the alarm screen asks about)', () {
     final bp = med(id: 'bp', times: [8 * 60, 20 * 60]);
-    final sugar = med(id: 'sugar', name: 'Sugar tablet', times: [8 * 60]);
+    final sugar = med(id: 'sugar', name: 'Water the plants', times: [8 * 60]);
 
     test('lists every unanswered due dose of the minute', () {
       final pending = pendingDoses(
@@ -225,7 +225,7 @@ void main() {
 
   group('planAlarms (handed to Android, also after reboot)', () {
     final bp = med(id: 'bp', times: [8 * 60, 20 * 60]);
-    final sugar = med(id: 'sugar', name: 'Sugar tablet', times: [8 * 60]);
+    final sugar = med(id: 'sugar', name: 'Water the plants', times: [8 * 60]);
 
     test('one alarm per minute, grouping medicines due together', () {
       final plan = planAlarms(

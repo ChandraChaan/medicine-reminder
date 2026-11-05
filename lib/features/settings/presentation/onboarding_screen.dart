@@ -59,8 +59,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   Text(l10n.onboardingBody, style: text.titleMedium),
                   const SizedBox(height: 12),
                   Text(l10n.onboardingPrivacy, style: text.bodyLarge),
-                  const SizedBox(height: 12),
-                  Text(l10n.aboutDisclaimer, style: text.bodyLarge),
                   const SizedBox(height: 28),
                   FilledButton.icon(
                     key: const Key('onboarding-allow'),

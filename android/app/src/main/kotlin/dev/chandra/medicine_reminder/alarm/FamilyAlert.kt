@@ -95,7 +95,7 @@ object FamilyAlert {
         val (alarmName, noticeName) = AlarmScheduler.channelNames(context)
         AlarmNotifications.ensureChannels(context, alarmName, noticeName)
         val notification = Notification.Builder(context, AlarmNotifications.NOTICE_CHANNEL)
-            .setSmallIcon(R.drawable.ic_stat_pill)
+            .setSmallIcon(R.drawable.ic_stat_alarm)
             .setContentTitle(title)
             .setContentText(body)
             .setStyle(Notification.BigTextStyle().bigText(body))

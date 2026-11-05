@@ -49,36 +49,26 @@ Future<void> loadFonts({String? script}) async {
 
 final medicines = [
   const Medicine(
-    id: 'amlo',
-    name: 'Amlodipine 5 mg',
-    doseQuarters: 4,
-    unit: DoseUnit.tablet,
+    id: 'call',
+    name: 'Call Amma',
     times: [8 * 60, 21 * 60],
-    food: FoodTiming.afterFood,
     startDate: LocalDate(2026, 9, 1),
-    stockQuarters: 8 * 4,
   ),
   const Medicine(
-    id: 'met',
-    name: 'Metformin 500',
-    doseQuarters: 4,
-    unit: DoseUnit.tablet,
+    id: 'water',
+    name: 'Drink water',
     times: [8 * 60, 14 * 60, 21 * 60],
-    food: FoodTiming.withFood,
     startDate: LocalDate(2026, 9, 1),
   ),
   const Medicine(
-    id: 'thy',
-    name: 'Thyroxine 50',
-    doseQuarters: 4,
-    unit: DoseUnit.tablet,
+    id: 'walk',
+    name: 'Morning walk',
     times: [6 * 60 + 30],
-    food: FoodTiming.beforeFood,
     startDate: LocalDate(2026, 9, 1),
   ),
 ];
 
-/// Three weeks of history: mostly taken, a few missed and one skipped.
+/// Three weeks of history: mostly done, a few missed and one skipped.
 List<DoseEvent> history() {
   final events = <DoseEvent>[];
   for (
@@ -105,9 +95,9 @@ List<DoseEvent> history() {
   }
   // Today: early doses done.
   for (final (id, t) in [
-    ('thy', 6 * 60 + 30),
-    ('amlo', 8 * 60),
-    ('met', 8 * 60),
+    ('walk', 6 * 60 + 30),
+    ('call', 8 * 60),
+    ('water', 8 * 60),
   ]) {
     events.add(
       DoseEvent(

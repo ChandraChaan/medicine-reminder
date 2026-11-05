@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -11,7 +10,7 @@ import '../../../core/widgets/medicine_photo.dart';
 import '../domain/medicine.dart';
 import 'medicines_controller.dart';
 
-/// The family member's list: add, edit, delete and restock medicines.
+/// The family member's list: add, edit and delete reminders.
 class MedicinesScreen extends ConsumerWidget {
   const MedicinesScreen({super.key});
 
@@ -94,37 +93,11 @@ class _MedicineCard extends ConsumerWidget {
     }
   }
 
-  Future<void> _boughtMore(BuildContext context, WidgetRef ref) async {
-    final l10n = context.l10n;
-    final count = await showDialog<int>(
-      context: context,
-      builder: (context) => const _BoughtMoreDialog(),
-    );
-    if (count == null || count <= 0) return;
-    if (!context.mounted) return;
-    await ref.read(medicinesProvider.notifier).addStock(medicine.id, count * 4);
-    if (!context.mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          l10n.stockLeft(
-            amountLabel(
-              l10n,
-              medicine.unit,
-              (medicine.stockQuarters ?? 0) + count * 4,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final text = Theme.of(context).textTheme;
     final end = medicine.endDate;
-    final stock = medicine.stockQuarters;
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       child: Padding(
@@ -147,11 +120,6 @@ class _MedicineCard extends ConsumerWidget {
                     children: [
                       Text(medicine.name, style: text.headlineSmall),
                       Text(
-                        '${doseLabel(l10n, medicine)} · '
-                        '${foodLabel(l10n, medicine.food)}',
-                        style: text.bodyLarge,
-                      ),
-                      Text(
                         [
                           for (final t in medicine.times)
                             formatTimeOf(context, t),
@@ -164,13 +132,6 @@ class _MedicineCard extends ConsumerWidget {
                             : l10n.untilDate(formatDate(l10n, end)),
                         style: text.bodyMedium,
                       ),
-                      if (stock != null)
-                        Text(
-                          l10n.stockLeft(
-                            amountLabel(l10n, medicine.unit, stock),
-                          ),
-                          style: text.titleMedium,
-                        ),
                     ],
                   ),
                 ),
@@ -182,12 +143,6 @@ class _MedicineCard extends ConsumerWidget {
               runSpacing: 8,
               alignment: WrapAlignment.end,
               children: [
-                if (stock != null)
-                  TextButton.icon(
-                    onPressed: () => unawaited(_boughtMore(context, ref)),
-                    icon: const Icon(Icons.add_shopping_cart_rounded),
-                    label: Text(l10n.boughtMore),
-                  ),
                 TextButton.icon(
                   onPressed: () => context.push('/medicines/${medicine.id}'),
                   icon: const Icon(Icons.edit_rounded),
@@ -203,48 +158,6 @@ class _MedicineCard extends ConsumerWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _BoughtMoreDialog extends StatefulWidget {
-  const _BoughtMoreDialog();
-
-  @override
-  State<_BoughtMoreDialog> createState() => _BoughtMoreDialogState();
-}
-
-class _BoughtMoreDialogState extends State<_BoughtMoreDialog> {
-  final _count = TextEditingController();
-
-  @override
-  void dispose() {
-    _count.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return AlertDialog(
-      title: Text(l10n.boughtMoreTitle),
-      content: TextField(
-        controller: _count,
-        autofocus: true,
-        keyboardType: TextInputType.number,
-        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        style: Theme.of(context).textTheme.headlineSmall,
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: Text(l10n.cancel),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pop(context, int.tryParse(_count.text)),
-          child: Text(l10n.save),
-        ),
-      ],
     );
   }
 }

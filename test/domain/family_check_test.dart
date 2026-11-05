@@ -27,7 +27,7 @@ void main() {
   setUpAll(initializeDateFormatting);
 
   final bp = med(id: 'bp', times: [8 * 60, 20 * 60]);
-  final sugar = med(id: 'sugar', name: 'Sugar tablet', times: [8 * 60]);
+  final sugar = med(id: 'sugar', name: 'Water the plants', times: [8 * 60]);
 
   group('planFamilyChecks (missed-dose detection for family)', () {
     test('one check per deadline, grouping doses due together', () {
@@ -193,7 +193,7 @@ void main() {
       expect(extra['channel'], 'sms');
       expect(
         extra['message'],
-        'Medicine Reminder: Amma has not marked BP tablet (due at 8:00 AM) as taken. Please check on them.',
+        'Daily Reminder: Amma has not marked Morning walk (due at 8:00 AM) as done. Please check on them.',
       );
       // Ids stay unique across ring and check alarms.
       expect(entries.map((e) => e.id).toSet(), hasLength(entries.length));
@@ -206,7 +206,7 @@ void main() {
       ).firstWhere((e) => e.kind == AlarmKind.check);
       expect(
         (te.extra['message']! as String),
-        startsWith('మందుల రిమైండర్: Amma'),
+        startsWith('డైలీ రిమైండర్: Amma'),
       );
     });
   });

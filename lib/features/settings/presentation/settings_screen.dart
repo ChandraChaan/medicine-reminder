@@ -79,11 +79,6 @@ class SettingsScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              l10n.aboutDisclaimer,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            Text(
               l10n.aboutSource,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
@@ -160,10 +155,7 @@ class _SpeechSettingsState extends ConsumerState<_SpeechSettings> {
   Future<void> _test(AppLanguage language) async {
     final ok = await ref
         .read(alarmVoiceProvider)
-        .say(
-          language,
-          (l10n) => l10n.speechOne(l10n.sampleMedicine, l10n.foodAfterSpoken),
-        );
+        .say(language, (l10n) => l10n.speechOne(l10n.sampleMedicine));
     if (!mounted) return;
     setState(() => _voiceMissing = !ok);
   }

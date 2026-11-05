@@ -9,7 +9,7 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
-  String get appTitle => 'दवा रिमाइंडर';
+  String get appTitle => 'डेली रिमाइंडर';
 
   @override
   String get languageEnglish => 'English';
@@ -58,7 +58,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get onboardingBody =>
-      'दवा के समय फ़ोन बजेगा, दवा का नाम बड़े अक्षरों में दिखाएगा और पढ़कर सुनाएगा। फ़ोन लॉक होने पर भी काम करता है।';
+      'रिमाइंडर के समय फ़ोन अलार्म की तरह बजता है, रिमाइंडर बड़े अक्षरों में दिखाता है और पढ़कर सुनाता है। फ़ोन लॉक होने पर भी यह काम करता है।';
 
   @override
   String get onboardingPrivacy =>
@@ -74,20 +74,20 @@ class AppLocalizationsHi extends AppLocalizations {
   String get todayTitle => 'आज';
 
   @override
-  String get nothingToday => 'आज कोई दवा नहीं है।';
+  String get nothingToday => 'आज कोई रिमाइंडर नहीं है।';
 
   @override
-  String get allDoneToday => 'आज की सारी दवाएँ हो गईं। बहुत बढ़िया!';
+  String get allDoneToday => 'आज के सभी रिमाइंडर पूरे हो गए। बहुत बढ़िया!';
 
   @override
-  String get noMedicinesTitle => 'अभी कोई दवा नहीं';
+  String get noMedicinesTitle => 'अभी कोई रिमाइंडर नहीं';
 
   @override
   String get noMedicinesBody =>
-      'परिवार के किसी सदस्य से दवाएँ जोड़ने को कहें। हर दवा में लगभग एक मिनट लगता है।';
+      'याद रखने वाली चीज़ें जोड़ें, जैसे सैर, फ़ोन कॉल या पानी पीना। हर एक में लगभग एक मिनट लगता है।';
 
   @override
-  String get addMedicine => 'दवा जोड़ें';
+  String get addMedicine => 'रिमाइंडर जोड़ें';
 
   @override
   String get history => 'इतिहास';
@@ -112,7 +112,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String statusTaken(String time) {
-    return '$time पर ली';
+    return '$time बजे पूरा हुआ';
   }
 
   @override
@@ -122,7 +122,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get statusMissed => 'नहीं ली';
 
   @override
-  String get statusDue => 'अभी लें';
+  String get statusDue => 'अभी करें';
 
   @override
   String statusSnoozed(String time) {
@@ -131,27 +131,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get statusUpcoming => 'आज बाद में';
-
-  @override
-  String refillDaysLeft(String name, int days) {
-    String _temp0 = intl.Intl.pluralLogic(
-      days,
-      locale: localeName,
-      other: 'सिर्फ़ $days दिन की बची है',
-      one: 'सिर्फ़ 1 दिन की बची है',
-    );
-    return '$name: $_temp0। जल्दी खरीदें।';
-  }
-
-  @override
-  String refillRunOut(String name) {
-    return '$name खत्म हो गई है। आज ही खरीदें।';
-  }
-
-  @override
-  String refillNoticeTitle(String name) {
-    return '$name खरीदने का समय';
-  }
 
   @override
   String get bannerNotifications => 'रिमाइंडर बंद हैं, इसलिए बज नहीं पाएँगे।';
@@ -167,7 +146,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get fix => 'ठीक करें';
 
   @override
-  String get alarmTitle => 'दवा लेने का समय';
+  String get alarmTitle => 'रिमाइंडर';
 
   @override
   String alarmCount(int index, int total) {
@@ -183,10 +162,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get alarmAllDone => 'सब हो गया। बहुत बढ़िया!';
 
   @override
-  String get alarmNothingDue => 'अभी कोई दवा लेनी नहीं है।';
+  String get alarmNothingDue => 'अभी कुछ भी बाकी नहीं है।';
 
   @override
-  String get taken => 'ले ली';
+  String get taken => 'हो गया';
 
   @override
   String snooze(int minutes) {
@@ -202,123 +181,29 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String doseAmount(String amount, String unit) {
-    return '$amount $unit';
+  String speechOne(String name) {
+    return '$name का समय हो गया है।';
   }
 
   @override
-  String unitTablet(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'गोलियाँ',
-      one: 'गोली',
-    );
-    return '$_temp0';
-  }
+  String get speechMany => 'इन रिमाइंडर का समय हो गया है:';
 
   @override
-  String unitCapsule(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'कैप्सूल',
-      one: 'कैप्सूल',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get unitMl => 'मि.ली.';
-
-  @override
-  String unitDrops(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'बूँदें',
-      one: 'बूँद',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String unitPuff(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'पफ़',
-      one: 'पफ़',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String unitInjection(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'इंजेक्शन',
-      one: 'इंजेक्शन',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get foodBefore => 'खाने से पहले';
-
-  @override
-  String get foodAfter => 'खाने के बाद';
-
-  @override
-  String get foodWith => 'खाने के साथ';
-
-  @override
-  String get foodAny => 'कभी भी';
-
-  @override
-  String get foodBeforeSpoken => 'खाने से पहले';
-
-  @override
-  String get foodAfterSpoken => 'खाने के बाद';
-
-  @override
-  String get foodWithSpoken => 'खाने के साथ';
-
-  @override
-  String speechOne(String name, String food) {
-    return '$name लेने का समय हो गया है, $food।';
-  }
-
-  @override
-  String speechOneNoFood(String name) {
-    return '$name लेने का समय हो गया है।';
-  }
-
-  @override
-  String get speechMany => 'आपकी दवाएँ लेने का समय हो गया है।';
-
-  @override
-  String speechItem(String name, String food) {
-    return '$name, $food।';
-  }
-
-  @override
-  String speechItemNoFood(String name) {
+  String speechItem(String name) {
     return '$name।';
   }
 
   @override
-  String get channelAlarms => 'दवा के अलार्म';
+  String get channelAlarms => 'रिमाइंडर अलार्म';
 
   @override
-  String get channelNotices => 'दवा खत्म होने की सूचनाएँ';
+  String get channelNotices => 'अन्य सूचनाएँ';
 
   @override
-  String get medicinesTitle => 'दवाएँ';
+  String get medicinesTitle => 'रिमाइंडर';
 
   @override
-  String get medicinesEmpty => 'अभी कोई दवा नहीं। पहली दवा जोड़ें।';
+  String get medicinesEmpty => 'अभी कोई रिमाइंडर नहीं है। पहला जोड़ें।';
 
   @override
   String deleteMedicineTitle(String name) {
@@ -327,18 +212,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get deleteMedicineBody =>
-      'इसके रिमाइंडर और इतिहास इस फ़ोन से हट जाएँगे।';
-
-  @override
-  String get boughtMore => 'और खरीदी';
-
-  @override
-  String get boughtMoreTitle => 'कितनी खरीदीं?';
-
-  @override
-  String stockLeft(String amount) {
-    return '$amount बची हैं';
-  }
+      'इसके अलार्म और इतिहास इस फ़ोन से हटा दिए जाएँगे।';
 
   @override
   String untilDate(String date) {
@@ -354,16 +228,16 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get stepName => 'दवा का नाम क्या है?';
+  String get stepName => 'किस बात की याद दिलानी है?';
 
   @override
-  String get nameLabel => 'दवा का नाम';
+  String get nameLabel => 'रिमाइंडर का नाम';
 
   @override
-  String get nameHint => 'जैसे: BP की गोली';
+  String get nameHint => 'उदाहरण: शाम की सैर';
 
   @override
-  String get sampleMedicine => 'BP की गोली';
+  String get sampleMedicine => 'शाम की सैर';
 
   @override
   String get nameRequired => 'कृपया नाम लिखें।';
@@ -378,22 +252,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get removePhoto => 'फ़ोटो हटाएँ';
 
   @override
-  String get photoHelp => 'पत्ते की फ़ोटो से सही दवा पहचानना आसान होता है।';
+  String get photoHelp => 'फ़ोटो से रिमाइंडर पहचानना आसान होता है।';
 
   @override
-  String get stepDose => 'हर बार कितनी?';
-
-  @override
-  String get decrease => 'कम करें';
-
-  @override
-  String get increase => 'बढ़ाएँ';
-
-  @override
-  String get unitLabel => 'प्रकार';
-
-  @override
-  String get stepTimes => 'कब लेनी है?';
+  String get stepTimes => 'यह कब बजना चाहिए?';
 
   @override
   String get addTime => 'समय जोड़ें';
@@ -405,9 +267,6 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get timesRequired => 'कम से कम एक समय चुनें।';
-
-  @override
-  String get stepFood => 'खाने से पहले या बाद में?';
 
   @override
   String get stepDays => 'किन दिनों में?';
@@ -437,33 +296,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get endBeforeStart => 'आखिरी दिन पहले दिन से पहले नहीं हो सकता।';
 
   @override
-  String get stepStock => 'गोलियाँ गिनें?';
-
-  @override
-  String get stockHelp =>
-      'हर खुराक के बाद ऐप गिनती घटाता है और खत्म होने से पहले बता देता है।';
-
-  @override
-  String get dontCount => 'न गिनें';
-
-  @override
-  String get countThem => 'गिनें';
-
-  @override
-  String get stockInHand => 'अभी कितनी हैं?';
-
-  @override
-  String warnDaysBefore(int days) {
-    String _temp0 = intl.Intl.pluralLogic(
-      days,
-      locale: localeName,
-      other: '$days दिन',
-      one: '1 दिन',
-    );
-    return 'खत्म होने से $_temp0 पहले बताएँ';
-  }
-
-  @override
   String get stepReview => 'जाँचें और सेव करें';
 
   @override
@@ -473,12 +305,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get reviewDays => 'दिन';
 
   @override
-  String get reviewStock => 'गिनती';
-
-  @override
-  String get notCounted => 'गिनती नहीं';
-
-  @override
   String get settingsLanguage => 'भाषा';
 
   @override
@@ -486,7 +312,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get settingsSpeakHelp =>
-      'अलार्म बजने पर दवा का नाम और खाने से पहले या बाद, यह पढ़कर सुनाता है।';
+      'अलार्म बजने पर रिमाइंडर का नाम पढ़कर सुनाता है।';
 
   @override
   String get testVoice => 'जाँच के लिए सुनाएँ';
@@ -496,7 +322,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'इस फ़ोन में अभी इस भाषा की आवाज़ नहीं है, इसलिए रिमाइंडर अंग्रेज़ी में सुनाए जाएँगे। Android की टेक्स्ट-टू-स्पीच सेटिंग्स में आवाज़ जोड़ सकते हैं।';
 
   @override
-  String get settingsMissedAfter => 'कितनी देर बाद खुराक छूटी हुई मानें';
+  String get settingsMissedAfter => 'रिमाइंडर को इतने समय बाद छूटा हुआ मानें';
 
   @override
   String minutesCount(int count) {
@@ -546,10 +372,6 @@ class AppLocalizationsHi extends AppLocalizations {
       'सब कुछ इसी फ़ोन में रहता है। न अकाउंट, न इंटरनेट, न विज्ञापन, न ट्रैकिंग।';
 
   @override
-  String get aboutDisclaimer =>
-      'यह ऐप सिर्फ़ याद दिलाने के लिए है, डॉक्टरी सलाह नहीं। हमेशा डॉक्टर की बात मानें।';
-
-  @override
   String get aboutSource => 'मुफ़्त और ओपन सोर्स (MIT लाइसेंस)।';
 
   @override
@@ -557,11 +379,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String historySummary(int taken, int total) {
-    return 'इस महीने $total में से $taken खुराक ली';
+    return 'इस महीने $total में से $taken रिमाइंडर पूरे हुए';
   }
 
   @override
-  String get historyEmpty => 'इस महीने कोई खुराक नहीं।';
+  String get historyEmpty => 'इस महीने कोई रिमाइंडर नहीं।';
 
   @override
   String get previousMonth => 'पिछला महीना';
@@ -570,7 +392,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get nextMonth => 'अगला महीना';
 
   @override
-  String get legendAllTaken => 'सब ली';
+  String get legendAllTaken => 'सब पूरे';
 
   @override
   String get legendSomeMissed => 'कुछ छूटीं या छोड़ीं';
@@ -580,12 +402,12 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String historyDay(String date, int taken, int missed, int skipped) {
-    return '$date: $taken ली, $missed छूटीं, $skipped छोड़ीं';
+    return '$date: $taken पूरे, $missed छूटे, $skipped छोड़े';
   }
 
   @override
   String historyDayNoDoses(String date) {
-    return '$date: कोई खुराक नहीं';
+    return '$date: कोई रिमाइंडर नहीं';
   }
 
   @override
@@ -593,10 +415,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get familyCheckIntro =>
-      'अगर खुराक छूटी हुई मानने के समय तक \'ले ली\' नहीं दबाया गया, तो यह फ़ोन परिवार के एक या दो लोगों को बता सकता है। जब तक आप इसे यहाँ चालू नहीं करते, यह बंद रहता है।';
+      'अगर कोई रिमाइंडर तय समय में \"हो गया\" नहीं किया गया, तो यह फ़ोन परिवार के एक या दो लोगों को बता सकता है। जब तक आप इसे यहाँ चालू नहीं करते, यह बंद रहता है।';
 
   @override
-  String get familyCheckEnable => 'छूटी खुराक के बारे में परिवार को बताएँ';
+  String get familyCheckEnable =>
+      'छूटे हुए रिमाइंडर के बारे में परिवार को बताएँ';
 
   @override
   String get familyPersonLabel => 'परिवार इन्हें क्या कहकर बुलाता है?';
@@ -641,7 +464,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get familySmsConsent =>
-      'मैं सहमत हूँ कि खुराक छूटने पर यह फ़ोन इन नंबरों पर SMS भेज सकता है।';
+      'मैं सहमत हूँ कि रिमाइंडर छूटने पर यह फ़ोन इन नंबरों पर SMS भेज सकता है।';
 
   @override
   String get familySmsPermission => 'SMS भेजने की अनुमति दें';
@@ -664,12 +487,12 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String familyMessage(String person, String medicines, String time) {
-    return 'दवा रिमाइंडर: $person ने $time वाली $medicines अभी तक ली हुई दर्ज नहीं की है। कृपया एक बार पूछ लें।';
+    return 'डेली रिमाइंडर: $person ने $medicines ($time बजे) पूरा नहीं किया है। कृपया उनका हाल पूछ लें।';
   }
 
   @override
   String familyTestMessage(String person) {
-    return 'दवा रिमाइंडर: यह जाँच संदेश है। अगर $person की खुराक छूटती है तो आपको ऐसा संदेश मिलेगा।';
+    return 'डेली रिमाइंडर: यह एक टेस्ट है। अगर $person कोई रिमाइंडर छोड़ देते हैं, तो आपको ऐसा संदेश मिलेगा।';
   }
 
   @override
@@ -680,14 +503,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get familyNotifySentBody =>
-      'छूटी खुराक के बारे में परिवार को SMS भेजा गया।';
+      'छूटे हुए रिमाइंडर के बारे में आपके परिवार को SMS भेजा गया।';
 
   @override
   String get familyNotifyShareTitle => 'परिवार को बताएँ';
 
   @override
   String get familyNotifyShareBody =>
-      'एक खुराक छूट गई है। संदेश भेजने के लिए दबाएँ।';
+      'एक रिमाइंडर छूट गया। संदेश भेजने के लिए टैप करें।';
 
   @override
   String get familyNeedsNumber => 'कम से कम एक फ़ोन नंबर जोड़ें।';
