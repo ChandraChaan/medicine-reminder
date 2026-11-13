@@ -62,11 +62,7 @@ List<AlarmEntry> buildAlarmEntries(
         kind: AlarmKind.ring,
         at: alarm.at,
         title: l10n.alarmTitle,
-        body: [
-          for (final dose in alarm.doses)
-            '${dose.medicine.name}: ${doseLabel(l10n, dose.medicine)}, '
-                '${foodLabel(l10n, dose.medicine.food)}',
-        ].join('\n'),
+        body: [for (final dose in alarm.doses) dose.medicine.name].join('\n'),
       ),
     for (final (index, check) in checks.indexed)
       AlarmEntry(

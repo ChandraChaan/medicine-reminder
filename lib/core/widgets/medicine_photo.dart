@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../l10n/l10n.dart';
 
-/// The strip photo, or a pill icon when there is none.
+/// The reminder photo, or an alarm icon when there is none.
 class MedicinePhoto extends StatelessWidget {
   const MedicinePhoto({
     required this.name,
@@ -56,7 +56,7 @@ class _Placeholder extends StatelessWidget {
   Widget build(BuildContext context) => SizedBox.square(
     dimension: size,
     child: Icon(
-      Icons.medication_rounded,
+      Icons.alarm_rounded,
       size: size * 0.6,
       color: Theme.of(context).colorScheme.onPrimaryContainer,
     ),

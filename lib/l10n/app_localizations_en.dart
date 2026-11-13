@@ -9,7 +9,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appTitle => 'Medicine Reminder';
+  String get appTitle => 'Daily Reminder';
 
   @override
   String get languageEnglish => 'English';
@@ -58,7 +58,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onboardingBody =>
-      'At medicine time the phone rings, shows the medicine in big letters and reads it out. It works even when the phone is locked.';
+      'At reminder time the phone rings, shows the reminder in big letters and reads it out. It works even when the phone is locked.';
 
   @override
   String get onboardingPrivacy =>
@@ -74,20 +74,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get todayTitle => 'Today';
 
   @override
-  String get nothingToday => 'No medicines today.';
+  String get nothingToday => 'No reminders today.';
 
   @override
-  String get allDoneToday => 'All of today\'s medicines are done. Well done!';
+  String get allDoneToday => 'All of today\'s reminders are done. Well done!';
 
   @override
-  String get noMedicinesTitle => 'No medicines yet';
+  String get noMedicinesTitle => 'No reminders yet';
 
   @override
   String get noMedicinesBody =>
-      'Ask a family member to add the medicines. Each one takes about a minute.';
+      'Add the things to remember, like a walk, a phone call or drinking water. Each one takes about a minute.';
 
   @override
-  String get addMedicine => 'Add medicine';
+  String get addMedicine => 'Add reminder';
 
   @override
   String get history => 'History';
@@ -112,7 +112,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String statusTaken(String time) {
-    return 'Taken at $time';
+    return 'Done at $time';
   }
 
   @override
@@ -122,7 +122,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statusMissed => 'Missed';
 
   @override
-  String get statusDue => 'Take now';
+  String get statusDue => 'Do it now';
 
   @override
   String statusSnoozed(String time) {
@@ -131,27 +131,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get statusUpcoming => 'Later today';
-
-  @override
-  String refillDaysLeft(String name, int days) {
-    String _temp0 = intl.Intl.pluralLogic(
-      days,
-      locale: localeName,
-      other: '$days days left',
-      one: '1 day left',
-    );
-    return '$name: $_temp0. Buy more soon.';
-  }
-
-  @override
-  String refillRunOut(String name) {
-    return '$name has run out. Buy more today.';
-  }
-
-  @override
-  String refillNoticeTitle(String name) {
-    return 'Time to buy $name';
-  }
 
   @override
   String get bannerNotifications =>
@@ -169,7 +148,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fix => 'Fix';
 
   @override
-  String get alarmTitle => 'Time for your medicine';
+  String get alarmTitle => 'Reminder';
 
   @override
   String alarmCount(int index, int total) {
@@ -185,10 +164,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get alarmAllDone => 'All done. Well done!';
 
   @override
-  String get alarmNothingDue => 'No medicine is due right now.';
+  String get alarmNothingDue => 'Nothing is due right now.';
 
   @override
-  String get taken => 'Taken';
+  String get taken => 'Done';
 
   @override
   String snooze(int minutes) {
@@ -204,123 +183,29 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String doseAmount(String amount, String unit) {
-    return '$amount $unit';
+  String speechOne(String name) {
+    return 'It\'s time for $name.';
   }
 
   @override
-  String unitTablet(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'tablets',
-      one: 'tablet',
-    );
-    return '$_temp0';
-  }
+  String get speechMany => 'It\'s time for these reminders:';
 
   @override
-  String unitCapsule(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'capsules',
-      one: 'capsule',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get unitMl => 'ml';
-
-  @override
-  String unitDrops(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'drops',
-      one: 'drop',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String unitPuff(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'puffs',
-      one: 'puff',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String unitInjection(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'injections',
-      one: 'injection',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get foodBefore => 'Before food';
-
-  @override
-  String get foodAfter => 'After food';
-
-  @override
-  String get foodWith => 'With food';
-
-  @override
-  String get foodAny => 'Any time';
-
-  @override
-  String get foodBeforeSpoken => 'before food';
-
-  @override
-  String get foodAfterSpoken => 'after food';
-
-  @override
-  String get foodWithSpoken => 'with food';
-
-  @override
-  String speechOne(String name, String food) {
-    return 'It\'s time for your $name, $food.';
-  }
-
-  @override
-  String speechOneNoFood(String name) {
-    return 'It\'s time for your $name.';
-  }
-
-  @override
-  String get speechMany => 'It\'s time for your medicines.';
-
-  @override
-  String speechItem(String name, String food) {
-    return '$name, $food.';
-  }
-
-  @override
-  String speechItemNoFood(String name) {
+  String speechItem(String name) {
     return '$name.';
   }
 
   @override
-  String get channelAlarms => 'Medicine alarms';
+  String get channelAlarms => 'Reminder alarms';
 
   @override
-  String get channelNotices => 'Refill and other notices';
+  String get channelNotices => 'Other notices';
 
   @override
-  String get medicinesTitle => 'Medicines';
+  String get medicinesTitle => 'Reminders';
 
   @override
-  String get medicinesEmpty => 'No medicines yet. Add the first one.';
+  String get medicinesEmpty => 'No reminders yet. Add the first one.';
 
   @override
   String deleteMedicineTitle(String name) {
@@ -329,18 +214,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get deleteMedicineBody =>
-      'Its reminders and history will be removed from this phone.';
-
-  @override
-  String get boughtMore => 'Bought more';
-
-  @override
-  String get boughtMoreTitle => 'How many did you buy?';
-
-  @override
-  String stockLeft(String amount) {
-    return '$amount left';
-  }
+      'Its alarms and history will be removed from this phone.';
 
   @override
   String untilDate(String date) {
@@ -356,16 +230,16 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get stepName => 'What is the medicine called?';
+  String get stepName => 'What should I remind you about?';
 
   @override
-  String get nameLabel => 'Medicine name';
+  String get nameLabel => 'Reminder name';
 
   @override
-  String get nameHint => 'For example: BP tablet';
+  String get nameHint => 'For example: Evening walk';
 
   @override
-  String get sampleMedicine => 'BP tablet';
+  String get sampleMedicine => 'Evening walk';
 
   @override
   String get nameRequired => 'Please type a name.';
@@ -380,22 +254,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get removePhoto => 'Remove photo';
 
   @override
-  String get photoHelp => 'A photo of the strip helps pick the right medicine.';
+  String get photoHelp => 'A photo makes the reminder easy to recognise.';
 
   @override
-  String get stepDose => 'How much each time?';
-
-  @override
-  String get decrease => 'Less';
-
-  @override
-  String get increase => 'More';
-
-  @override
-  String get unitLabel => 'Type';
-
-  @override
-  String get stepTimes => 'When should it be taken?';
+  String get stepTimes => 'When should it ring?';
 
   @override
   String get addTime => 'Add a time';
@@ -407,9 +269,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get timesRequired => 'Pick at least one time.';
-
-  @override
-  String get stepFood => 'Before or after food?';
 
   @override
   String get stepDays => 'Which days?';
@@ -439,33 +298,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get endBeforeStart => 'The last day can\'t be before the first day.';
 
   @override
-  String get stepStock => 'Count the tablets?';
-
-  @override
-  String get stockHelp =>
-      'The app counts down after each dose and warns before they run out.';
-
-  @override
-  String get dontCount => 'Don\'t count';
-
-  @override
-  String get countThem => 'Count them';
-
-  @override
-  String get stockInHand => 'How many are there now?';
-
-  @override
-  String warnDaysBefore(int days) {
-    String _temp0 = intl.Intl.pluralLogic(
-      days,
-      locale: localeName,
-      other: '$days days',
-      one: '1 day',
-    );
-    return 'Warn $_temp0 before they run out';
-  }
-
-  @override
   String get stepReview => 'Check and save';
 
   @override
@@ -475,12 +307,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reviewDays => 'Days';
 
   @override
-  String get reviewStock => 'Count';
-
-  @override
-  String get notCounted => 'Not counted';
-
-  @override
   String get settingsLanguage => 'Language';
 
   @override
@@ -488,7 +314,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsSpeakHelp =>
-      'Reads out the medicine name and food timing when the alarm rings.';
+      'Reads out the reminder name when the alarm rings.';
 
   @override
   String get testVoice => 'Play a test';
@@ -498,7 +324,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'This phone has no voice for this language yet, so reminders are read in English. You can add the voice in Android\'s text-to-speech settings.';
 
   @override
-  String get settingsMissedAfter => 'Count a dose as missed after';
+  String get settingsMissedAfter => 'Count a reminder as missed after';
 
   @override
   String minutesCount(int count) {
@@ -548,10 +374,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Everything stays on this phone. No account, no internet, no ads, no tracking.';
 
   @override
-  String get aboutDisclaimer =>
-      'This app is a reminder aid, not medical advice. Always follow the doctor\'s instructions.';
-
-  @override
   String get aboutSource => 'Free and open source (MIT licence).';
 
   @override
@@ -559,11 +381,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String historySummary(int taken, int total) {
-    return 'Taken $taken of $total doses this month';
+    return 'Done $taken of $total reminders this month';
   }
 
   @override
-  String get historyEmpty => 'No doses this month.';
+  String get historyEmpty => 'No reminders this month.';
 
   @override
   String get previousMonth => 'Previous month';
@@ -572,7 +394,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nextMonth => 'Next month';
 
   @override
-  String get legendAllTaken => 'All taken';
+  String get legendAllTaken => 'All done';
 
   @override
   String get legendSomeMissed => 'Some missed or skipped';
@@ -582,12 +404,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String historyDay(String date, int taken, int missed, int skipped) {
-    return '$date: $taken taken, $missed missed, $skipped skipped';
+    return '$date: $taken done, $missed missed, $skipped skipped';
   }
 
   @override
   String historyDayNoDoses(String date) {
-    return '$date: no doses';
+    return '$date: no reminders';
   }
 
   @override
@@ -595,10 +417,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get familyCheckIntro =>
-      'If a dose is not marked Taken within the missed-dose time, this phone can let one or two family members know. It stays off until you turn it on here.';
+      'If a reminder is not marked Done within the missed time, this phone can let one or two family members know. It stays off until you turn it on here.';
 
   @override
-  String get familyCheckEnable => 'Tell family about missed doses';
+  String get familyCheckEnable => 'Tell family about missed reminders';
 
   @override
   String get familyPersonLabel => 'What does the family call them?';
@@ -643,7 +465,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get familySmsConsent =>
-      'I agree that this phone may send an SMS to these numbers when a dose is missed.';
+      'I agree that this phone may send an SMS to these numbers when a reminder is missed.';
 
   @override
   String get familySmsPermission => 'Allow sending SMS';
@@ -667,12 +489,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String familyMessage(String person, String medicines, String time) {
-    return 'Medicine Reminder: $person has not marked $medicines (due at $time) as taken. Please check on them.';
+    return 'Daily Reminder: $person has not marked $medicines (due at $time) as done. Please check on them.';
   }
 
   @override
   String familyTestMessage(String person) {
-    return 'Medicine Reminder: this is a test. You will get a message like this if $person misses a dose.';
+    return 'Daily Reminder: this is a test. You will get a message like this if $person misses a reminder.';
   }
 
   @override
@@ -683,14 +505,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get familyNotifySentBody =>
-      'An SMS about the missed dose was sent to your family.';
+      'An SMS about the missed reminder was sent to your family.';
 
   @override
   String get familyNotifyShareTitle => 'Tell your family';
 
   @override
   String get familyNotifyShareBody =>
-      'A dose was missed. Tap to send the message.';
+      'A reminder was missed. Tap to send the message.';
 
   @override
   String get familyNeedsNumber => 'Add at least one phone number.';

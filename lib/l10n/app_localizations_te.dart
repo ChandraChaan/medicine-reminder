@@ -9,7 +9,7 @@ class AppLocalizationsTe extends AppLocalizations {
   AppLocalizationsTe([String locale = 'te']) : super(locale);
 
   @override
-  String get appTitle => 'మందుల రిమైండర్';
+  String get appTitle => 'డైలీ రిమైండర్';
 
   @override
   String get languageEnglish => 'English';
@@ -59,7 +59,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get onboardingBody =>
-      'మందు వేసుకునే సమయానికి ఫోన్ మోగుతుంది, మందు పేరును పెద్ద అక్షరాలలో చూపించి చదివి వినిపిస్తుంది. ఫోన్ లాక్‌లో ఉన్నా పనిచేస్తుంది.';
+      'రిమైండర్ సమయానికి ఫోన్ అలారంలా మోగుతుంది, రిమైండర్‌ను పెద్ద అక్షరాలతో చూపించి చదివి వినిపిస్తుంది. ఫోన్ లాక్ అయి ఉన్నా పనిచేస్తుంది.';
 
   @override
   String get onboardingPrivacy =>
@@ -75,20 +75,20 @@ class AppLocalizationsTe extends AppLocalizations {
   String get todayTitle => 'ఈ రోజు';
 
   @override
-  String get nothingToday => 'ఈ రోజు మందులు లేవు.';
+  String get nothingToday => 'ఈ రోజు రిమైండర్లు లేవు.';
 
   @override
-  String get allDoneToday => 'ఈ రోజు మందులన్నీ పూర్తయ్యాయి. చాలా బాగుంది!';
+  String get allDoneToday => 'ఈ రోజు రిమైండర్లన్నీ పూర్తయ్యాయి. చాలా బాగుంది!';
 
   @override
-  String get noMedicinesTitle => 'ఇంకా మందులు లేవు';
+  String get noMedicinesTitle => 'ఇంకా రిమైండర్లు లేవు';
 
   @override
   String get noMedicinesBody =>
-      'మందులను చేర్చమని కుటుంబ సభ్యులను అడగండి. ఒక్కో మందుకు సుమారు ఒక నిమిషం పడుతుంది.';
+      'గుర్తుంచుకోవాల్సినవి జోడించండి, ఉదాహరణకు నడక, ఫోన్ కాల్ లేదా నీళ్లు తాగడం. ఒక్కోదానికి దాదాపు ఒక నిమిషం పడుతుంది.';
 
   @override
-  String get addMedicine => 'మందు చేర్చండి';
+  String get addMedicine => 'రిమైండర్ జోడించండి';
 
   @override
   String get history => 'చరిత్ర';
@@ -113,7 +113,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String statusTaken(String time) {
-    return '$timeకి వేసుకున్నారు';
+    return '$timeకి పూర్తయింది';
   }
 
   @override
@@ -123,7 +123,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get statusMissed => 'వేసుకోలేదు';
 
   @override
-  String get statusDue => 'ఇప్పుడు వేసుకోండి';
+  String get statusDue => 'ఇప్పుడు చేయండి';
 
   @override
   String statusSnoozed(String time) {
@@ -132,27 +132,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get statusUpcoming => 'ఈ రోజు తర్వాత';
-
-  @override
-  String refillDaysLeft(String name, int days) {
-    String _temp0 = intl.Intl.pluralLogic(
-      days,
-      locale: localeName,
-      other: 'ఇంకా $days రోజులకే సరిపోతుంది',
-      one: 'ఇంకా 1 రోజుకే సరిపోతుంది',
-    );
-    return '$name: $_temp0. త్వరగా కొనండి.';
-  }
-
-  @override
-  String refillRunOut(String name) {
-    return '$name అయిపోయింది. ఈ రోజే కొనండి.';
-  }
-
-  @override
-  String refillNoticeTitle(String name) {
-    return '$name కొనాల్సిన సమయం';
-  }
 
   @override
   String get bannerNotifications => 'రిమైండర్లు ఆఫ్‌లో ఉన్నాయి, అందుకే మోగవు.';
@@ -168,7 +147,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get fix => 'సరిచేయండి';
 
   @override
-  String get alarmTitle => 'మందు వేసుకునే సమయం';
+  String get alarmTitle => 'రిమైండర్';
 
   @override
   String alarmCount(int index, int total) {
@@ -184,10 +163,10 @@ class AppLocalizationsTe extends AppLocalizations {
   String get alarmAllDone => 'అన్నీ పూర్తయ్యాయి. చాలా బాగుంది!';
 
   @override
-  String get alarmNothingDue => 'ఇప్పుడు వేసుకోవాల్సిన మందు లేదు.';
+  String get alarmNothingDue => 'ఇప్పుడు ఏదీ మిగిలి లేదు.';
 
   @override
-  String get taken => 'వేసుకున్నాను';
+  String get taken => 'అయిపోయింది';
 
   @override
   String snooze(int minutes) {
@@ -203,123 +182,29 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String doseAmount(String amount, String unit) {
-    return '$amount $unit';
+  String speechOne(String name) {
+    return '$name సమయం అయింది.';
   }
 
   @override
-  String unitTablet(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'మాత్రలు',
-      one: 'మాత్ర',
-    );
-    return '$_temp0';
-  }
+  String get speechMany => 'ఈ రిమైండర్ల సమయం అయింది:';
 
   @override
-  String unitCapsule(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'క్యాప్సూల్స్',
-      one: 'క్యాప్సూల్',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get unitMl => 'మి.లీ.';
-
-  @override
-  String unitDrops(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'చుక్కలు',
-      one: 'చుక్క',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String unitPuff(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'పఫ్‌లు',
-      one: 'పఫ్',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String unitInjection(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'ఇంజెక్షన్లు',
-      one: 'ఇంజెక్షన్',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get foodBefore => 'భోజనానికి ముందు';
-
-  @override
-  String get foodAfter => 'భోజనం తర్వాత';
-
-  @override
-  String get foodWith => 'భోజనంతో పాటు';
-
-  @override
-  String get foodAny => 'ఎప్పుడైనా';
-
-  @override
-  String get foodBeforeSpoken => 'భోజనానికి ముందు';
-
-  @override
-  String get foodAfterSpoken => 'భోజనం తర్వాత';
-
-  @override
-  String get foodWithSpoken => 'భోజనంతో పాటు';
-
-  @override
-  String speechOne(String name, String food) {
-    return 'మీ $name వేసుకునే సమయం అయింది, $food.';
-  }
-
-  @override
-  String speechOneNoFood(String name) {
-    return 'మీ $name వేసుకునే సమయం అయింది.';
-  }
-
-  @override
-  String get speechMany => 'మీ మందులు వేసుకునే సమయం అయింది.';
-
-  @override
-  String speechItem(String name, String food) {
-    return '$name, $food.';
-  }
-
-  @override
-  String speechItemNoFood(String name) {
+  String speechItem(String name) {
     return '$name.';
   }
 
   @override
-  String get channelAlarms => 'మందుల అలారాలు';
+  String get channelAlarms => 'రిమైండర్ అలారాలు';
 
   @override
-  String get channelNotices => 'మందులు కొనాల్సిన సూచనలు';
+  String get channelNotices => 'ఇతర సూచనలు';
 
   @override
-  String get medicinesTitle => 'మందులు';
+  String get medicinesTitle => 'రిమైండర్లు';
 
   @override
-  String get medicinesEmpty => 'ఇంకా మందులు లేవు. మొదటిది చేర్చండి.';
+  String get medicinesEmpty => 'ఇంకా రిమైండర్లు లేవు. మొదటిది జోడించండి.';
 
   @override
   String deleteMedicineTitle(String name) {
@@ -328,18 +213,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get deleteMedicineBody =>
-      'దీని రిమైండర్లు, చరిత్ర ఈ ఫోన్ నుంచి తొలగిపోతాయి.';
-
-  @override
-  String get boughtMore => 'ఇంకా కొన్నాను';
-
-  @override
-  String get boughtMoreTitle => 'ఎన్ని కొన్నారు?';
-
-  @override
-  String stockLeft(String amount) {
-    return '$amount మిగిలాయి';
-  }
+      'దీని అలారాలు, చరిత్ర ఈ ఫోన్ నుండి తీసివేయబడతాయి.';
 
   @override
   String untilDate(String date) {
@@ -355,16 +229,16 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String get stepName => 'మందు పేరు ఏమిటి?';
+  String get stepName => 'దేని గురించి గుర్తు చేయాలి?';
 
   @override
-  String get nameLabel => 'మందు పేరు';
+  String get nameLabel => 'రిమైండర్ పేరు';
 
   @override
-  String get nameHint => 'ఉదాహరణ: BP మాత్ర';
+  String get nameHint => 'ఉదాహరణకు: సాయంత్రం నడక';
 
   @override
-  String get sampleMedicine => 'BP మాత్ర';
+  String get sampleMedicine => 'సాయంత్రం నడక';
 
   @override
   String get nameRequired => 'దయచేసి పేరు టైప్ చేయండి.';
@@ -379,22 +253,10 @@ class AppLocalizationsTe extends AppLocalizations {
   String get removePhoto => 'ఫోటో తీసేయండి';
 
   @override
-  String get photoHelp => 'స్ట్రిప్ ఫోటో ఉంటే సరైన మందును గుర్తుపట్టడం సులువు.';
+  String get photoHelp => 'ఫోటో ఉంటే రిమైండర్‌ను సులభంగా గుర్తుపట్టవచ్చు.';
 
   @override
-  String get stepDose => 'ఒక్కసారికి ఎంత?';
-
-  @override
-  String get decrease => 'తగ్గించండి';
-
-  @override
-  String get increase => 'పెంచండి';
-
-  @override
-  String get unitLabel => 'రకం';
-
-  @override
-  String get stepTimes => 'ఎప్పుడు వేసుకోవాలి?';
+  String get stepTimes => 'ఇది ఎప్పుడు మోగాలి?';
 
   @override
   String get addTime => 'సమయం చేర్చండి';
@@ -406,9 +268,6 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get timesRequired => 'కనీసం ఒక సమయం ఎంచుకోండి.';
-
-  @override
-  String get stepFood => 'భోజనానికి ముందా, తర్వాతా?';
 
   @override
   String get stepDays => 'ఏ రోజుల్లో?';
@@ -438,33 +297,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get endBeforeStart => 'చివరి రోజు మొదటి రోజు కంటే ముందు ఉండకూడదు.';
 
   @override
-  String get stepStock => 'మాత్రలను లెక్కించాలా?';
-
-  @override
-  String get stockHelp =>
-      'ప్రతి డోసు తర్వాత యాప్ లెక్క తగ్గిస్తుంది, అయిపోకముందే హెచ్చరిస్తుంది.';
-
-  @override
-  String get dontCount => 'లెక్కించవద్దు';
-
-  @override
-  String get countThem => 'లెక్కించండి';
-
-  @override
-  String get stockInHand => 'ఇప్పుడు ఎన్ని ఉన్నాయి?';
-
-  @override
-  String warnDaysBefore(int days) {
-    String _temp0 = intl.Intl.pluralLogic(
-      days,
-      locale: localeName,
-      other: '$days రోజులు',
-      one: '1 రోజు',
-    );
-    return 'అయిపోవడానికి $_temp0 ముందు హెచ్చరించండి';
-  }
-
-  @override
   String get stepReview => 'చూసి సేవ్ చేయండి';
 
   @override
@@ -474,12 +306,6 @@ class AppLocalizationsTe extends AppLocalizations {
   String get reviewDays => 'రోజులు';
 
   @override
-  String get reviewStock => 'లెక్క';
-
-  @override
-  String get notCounted => 'లెక్కించడం లేదు';
-
-  @override
   String get settingsLanguage => 'భాష';
 
   @override
@@ -487,7 +313,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get settingsSpeakHelp =>
-      'అలారం మోగినప్పుడు మందు పేరు, భోజనానికి ముందా తర్వాతా అనేది చదివి వినిపిస్తుంది.';
+      'అలారం మోగినప్పుడు రిమైండర్ పేరును చదివి వినిపిస్తుంది.';
 
   @override
   String get testVoice => 'పరీక్షగా వినిపించండి';
@@ -497,7 +323,8 @@ class AppLocalizationsTe extends AppLocalizations {
       'ఈ ఫోన్‌లో ఈ భాషకు ఇంకా వాయిస్ లేదు, అందుకే రిమైండర్లు ఇంగ్లీషులో వినిపిస్తాయి. Android టెక్స్ట్-టు-స్పీచ్ సెట్టింగ్‌లలో వాయిస్‌ను చేర్చుకోవచ్చు.';
 
   @override
-  String get settingsMissedAfter => 'ఎంత సేపటికి వేసుకోకపోతే మిస్ అయినట్లు';
+  String get settingsMissedAfter =>
+      'ఇంత సమయం తర్వాత రిమైండర్‌ను మిస్ అయినట్లు లెక్కించండి';
 
   @override
   String minutesCount(int count) {
@@ -547,10 +374,6 @@ class AppLocalizationsTe extends AppLocalizations {
       'అన్నీ ఈ ఫోన్‌లోనే ఉంటాయి. అకౌంట్ లేదు, ఇంటర్నెట్ లేదు, ప్రకటనలు లేవు, ట్రాకింగ్ లేదు.';
 
   @override
-  String get aboutDisclaimer =>
-      'ఈ యాప్ గుర్తు చేయడానికి మాత్రమే, వైద్య సలహా కాదు. ఎప్పుడూ డాక్టర్ సూచనలనే పాటించండి.';
-
-  @override
   String get aboutSource => 'ఉచితం, ఓపెన్ సోర్స్ (MIT లైసెన్స్).';
 
   @override
@@ -558,11 +381,11 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String historySummary(int taken, int total) {
-    return 'ఈ నెల $total డోసుల్లో $taken వేసుకున్నారు';
+    return 'ఈ నెల $totalలో $taken రిమైండర్లు పూర్తయ్యాయి';
   }
 
   @override
-  String get historyEmpty => 'ఈ నెల డోసులు లేవు.';
+  String get historyEmpty => 'ఈ నెల రిమైండర్లు లేవు.';
 
   @override
   String get previousMonth => 'గత నెల';
@@ -571,7 +394,7 @@ class AppLocalizationsTe extends AppLocalizations {
   String get nextMonth => 'తర్వాతి నెల';
 
   @override
-  String get legendAllTaken => 'అన్నీ వేసుకున్నారు';
+  String get legendAllTaken => 'అన్నీ పూర్తి';
 
   @override
   String get legendSomeMissed => 'కొన్ని మిస్ లేదా వదిలేశారు';
@@ -581,12 +404,12 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String historyDay(String date, int taken, int missed, int skipped) {
-    return '$date: $taken వేసుకున్నారు, $missed మిస్, $skipped వదిలేశారు';
+    return '$date: $taken పూర్తి, $missed మిస్, $skipped వదిలేశారు';
   }
 
   @override
   String historyDayNoDoses(String date) {
-    return '$date: డోసులు లేవు';
+    return '$date: రిమైండర్లు లేవు';
   }
 
   @override
@@ -594,11 +417,11 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get familyCheckIntro =>
-      'మిస్ అయ్యే సమయంలోగా డోసును \'వేసుకున్నాను\' అని నొక్కకపోతే, ఈ ఫోన్ ఒకరిద్దరు కుటుంబ సభ్యులకు తెలియజేయగలదు. మీరు ఇక్కడ ఆన్ చేసే వరకు ఇది ఆఫ్‌లోనే ఉంటుంది.';
+      'మిస్ అయ్యే సమయంలోపు రిమైండర్‌ను \"అయిపోయింది\" అని గుర్తించకపోతే, ఈ ఫోన్ కుటుంబంలో ఒకరిద్దరికి తెలియజేయగలదు. మీరు ఇక్కడ ఆన్ చేసే వరకు ఇది ఆఫ్‌లోనే ఉంటుంది.';
 
   @override
   String get familyCheckEnable =>
-      'మిస్ అయిన డోసుల గురించి కుటుంబానికి చెప్పండి';
+      'మిస్ అయిన రిమైండర్ల గురించి కుటుంబానికి చెప్పండి';
 
   @override
   String get familyPersonLabel => 'కుటుంబంలో వీరిని ఏమని పిలుస్తారు?';
@@ -643,7 +466,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get familySmsConsent =>
-      'డోసు మిస్ అయినప్పుడు ఈ నంబర్లకు ఈ ఫోన్ SMS పంపడానికి నేను అంగీకరిస్తున్నాను.';
+      'రిమైండర్ మిస్ అయినప్పుడు ఈ ఫోన్ ఈ నంబర్లకు SMS పంపవచ్చని నేను అంగీకరిస్తున్నాను.';
 
   @override
   String get familySmsPermission => 'SMS పంపడానికి అనుమతించండి';
@@ -666,12 +489,12 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String familyMessage(String person, String medicines, String time) {
-    return 'మందుల రిమైండర్: $person $timeకి వేసుకోవాల్సిన $medicines ఇంకా వేసుకున్నట్లు నొక్కలేదు. దయచేసి ఒకసారి కనుక్కోండి.';
+    return 'డైలీ రిమైండర్: $person గారు $medicines ($timeకి) పూర్తి చేసినట్లు గుర్తించలేదు. దయచేసి ఒకసారి వారిని అడగండి.';
   }
 
   @override
   String familyTestMessage(String person) {
-    return 'మందుల రిమైండర్: ఇది పరీక్ష సందేశం. $person డోసు మిస్ అయితే మీకు ఇలాంటి సందేశం వస్తుంది.';
+    return 'డైలీ రిమైండర్: ఇది టెస్ట్ మాత్రమే. $person గారు ఏదైనా రిమైండర్ మిస్ అయితే మీకు ఇలాంటి మెసేజ్ వస్తుంది.';
   }
 
   @override
@@ -682,14 +505,14 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get familyNotifySentBody =>
-      'మిస్ అయిన డోసు గురించి మీ కుటుంబానికి SMS పంపాం.';
+      'మిస్ అయిన రిమైండర్ గురించి మీ కుటుంబానికి SMS పంపబడింది.';
 
   @override
   String get familyNotifyShareTitle => 'కుటుంబానికి చెప్పండి';
 
   @override
   String get familyNotifyShareBody =>
-      'ఒక డోసు మిస్ అయింది. సందేశం పంపడానికి నొక్కండి.';
+      'ఒక రిమైండర్ మిస్ అయింది. మెసేజ్ పంపడానికి నొక్కండి.';
 
   @override
   String get familyNeedsNumber => 'కనీసం ఒక ఫోన్ నంబర్ చేర్చండి.';

@@ -6,7 +6,7 @@
 
     <!-- Android 13+ grants exact alarms to reminder apps at install. -->
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
-    <!-- Optional family check: text family when a dose is missed. Only
+    <!-- Optional family check: text family when a reminder is missed. Only
          asked for, and only used, after the setup person turns it on and
          agrees. -->
     <uses-permission android:name="android.permission.SEND_SMS" />
