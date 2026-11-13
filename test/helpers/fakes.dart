@@ -126,6 +126,7 @@ class FakeAlarmBridge implements AlarmBridge {
   Future<void> alarmDone() async => alarmDoneCalls++;
 
   final sms = <(List<String>, String)>[];
+  final openedSms = <(List<String>, String)>[];
   final whatsApp = <(String, String)>[];
 
   @override
@@ -137,6 +138,10 @@ class FakeAlarmBridge implements AlarmBridge {
   @override
   Future<void> openWhatsApp(String phone, String message) async =>
       whatsApp.add((phone, message));
+
+  @override
+  Future<void> openSms(List<String> phones, String message) async =>
+      openedSms.add((phones, message));
 
   @override
   Future<void> showNotice({

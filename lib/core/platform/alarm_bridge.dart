@@ -111,6 +111,9 @@ abstract interface class AlarmBridge {
   /// Opens WhatsApp with [message] ready to send to [phone].
   Future<void> openWhatsApp(String phone, String message);
 
+  /// Opens the SMS app with [message] ready to send to [phones].
+  Future<void> openSms(List<String> phones, String message);
+
   /// A plain notification, for example "Only 3 days of BP tablet left".
   Future<void> showNotice({
     required int id,
@@ -183,6 +186,10 @@ class MethodChannelAlarmBridge implements AlarmBridge {
   @override
   Future<void> openWhatsApp(String phone, String message) => _channel
       .invokeMethod<void>('openWhatsApp', {'phone': phone, 'message': message});
+
+  @override
+  Future<void> openSms(List<String> phones, String message) => _channel
+      .invokeMethod<void>('openSms', {'phones': phones, 'message': message});
 
   @override
   Future<void> showNotice({

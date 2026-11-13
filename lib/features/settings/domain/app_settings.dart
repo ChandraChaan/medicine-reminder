@@ -24,7 +24,8 @@ const missedAfterChoices = [30, 60, 120];
 
 /// How the family hears about a missed dose.
 enum FamilyChannel {
-  /// This phone sends an SMS by itself (needs consent and SEND_SMS).
+  /// This phone sends an SMS by itself (needs consent and SEND_SMS). In the
+  /// Play build, a notification opens the SMS app with the message instead.
   sms,
 
   /// This phone shows a notification that opens a ready-made WhatsApp
@@ -64,11 +65,12 @@ class FamilyCheck {
       if (normalizePhone(n) != null) normalizePhone(n)!,
   ];
 
-  /// True when a missed dose will actually reach someone.
-  bool get isActive =>
+  /// True when a missed dose will actually reach someone. [autoSms] says
+  /// whether this build sends SMS by itself; only then is consent needed.
+  bool isActive({required bool autoSms}) =>
       enabled &&
       validNumbers.isNotEmpty &&
-      (channel == FamilyChannel.whatsapp || smsConsent);
+      (channel == FamilyChannel.whatsapp || smsConsent || !autoSms);
 
   FamilyCheck copyWith({
     bool? enabled,

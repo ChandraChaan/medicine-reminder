@@ -43,7 +43,7 @@ void main() {
     await tapVisible(tester, find.byKey(const Key('family-consent')));
     await TestApp.settle(tester);
     expect(t.smsPermission.requests, 1);
-    expect(t.settings.settings.family.isActive, isTrue);
+    expect(t.settings.settings.family.isActive(autoSms: true), isTrue);
     expect(
       t.bridge.scheduled.where((e) => e.kind == AlarmKind.check),
       isNotEmpty,
@@ -80,10 +80,42 @@ void main() {
     await t.pump(tester, location: '/family');
     await tapVisible(tester, find.byKey(const Key('family-channel-whatsapp')));
     await TestApp.settle(tester);
-    expect(t.settings.settings.family.isActive, isTrue);
+    expect(t.settings.settings.family.isActive(autoSms: true), isTrue);
     await tapVisible(tester, find.byKey(const Key('family-test')));
     await TestApp.settle(tester);
     expect(t.bridge.whatsApp.single.$1, '+919988776655');
+    expect(t.bridge.sms, isEmpty);
+    expect(t.smsPermission.requests, 0);
+  });
+
+  testWidgets('Play build: SMS needs no consent and only opens the SMS app', (
+    tester,
+  ) async {
+    final t = TestApp(
+      clock: FakeClock(at(day1, 7)),
+      medicines: [med()],
+      autoSms: false,
+      settings: const AppSettings(
+        onboarded: true,
+        family: FamilyCheck(
+          enabled: true,
+          personName: 'Amma',
+          numbers: ['98765 43210'],
+        ),
+      ),
+    );
+    await t.pump(tester, location: '/family');
+    expect(find.text('SMS (someone presses Send)'), findsOneWidget);
+    expect(find.byKey(const Key('family-consent')), findsNothing);
+    expect(
+      t.bridge.scheduled.where((e) => e.kind == AlarmKind.check),
+      isNotEmpty,
+    );
+
+    await tapVisible(tester, find.byKey(const Key('family-test')));
+    await TestApp.settle(tester);
+    expect(t.bridge.openedSms.single.$1, ['+919876543210']);
+    expect(t.bridge.openedSms.single.$2, contains('this is a test'));
     expect(t.bridge.sms, isEmpty);
     expect(t.smsPermission.requests, 0);
   });

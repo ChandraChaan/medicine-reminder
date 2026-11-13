@@ -628,6 +628,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'This phone sends it by itself. Normal SMS charges apply.';
 
   @override
+  String get familyChannelSmsManual => 'SMS (someone presses Send)';
+
+  @override
+  String get familyChannelSmsManualHelp =>
+      'A notification on this phone opens the SMS app with the message ready. Nothing is sent until someone presses Send. Normal SMS charges apply.';
+
+  @override
   String get familyChannelWhatsapp => 'WhatsApp (someone presses Send)';
 
   @override

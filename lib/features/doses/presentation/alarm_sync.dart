@@ -32,8 +32,13 @@ String familyMessage(
 
 /// Turns planned alarms into what Android stores: one entry per minute, with
 /// the notification text already in the chosen language. Family checks are
-/// added only when the setup person turned the family check on.
-List<AlarmEntry> buildAlarmEntries(AppData data, LocalDateTime now) {
+/// added only when the setup person turned the family check on. [autoSms]
+/// says whether this build sends SMS by itself (see [autoSmsProvider]).
+List<AlarmEntry> buildAlarmEntries(
+  AppData data,
+  LocalDateTime now, {
+  bool autoSms = true,
+}) {
   final l10n = l10nFor(data.settings.language);
   final plan = planAlarms(
     data.medicines,
@@ -42,7 +47,7 @@ List<AlarmEntry> buildAlarmEntries(AppData data, LocalDateTime now) {
     missedAfterMinutes: data.missedAfter,
   );
   final family = data.settings.family;
-  final checks = family.isActive
+  final checks = family.isActive(autoSms: autoSms)
       ? planFamilyChecks(
           data.medicines,
           data.log,
@@ -104,6 +109,7 @@ class AlarmSync {
     final entries = buildAlarmEntries(
       data,
       _ref.read(clockProvider).nowLocal(),
+      autoSms: _ref.read(autoSmsProvider),
     );
     try {
       await _ref

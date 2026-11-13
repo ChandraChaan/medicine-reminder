@@ -1078,6 +1078,18 @@ abstract class AppLocalizations {
   /// **'This phone sends it by itself. Normal SMS charges apply.'**
   String get familyChannelSmsHelp;
 
+  /// No description provided for @familyChannelSmsManual.
+  ///
+  /// In en, this message translates to:
+  /// **'SMS (someone presses Send)'**
+  String get familyChannelSmsManual;
+
+  /// No description provided for @familyChannelSmsManualHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'A notification on this phone opens the SMS app with the message ready. Nothing is sent until someone presses Send. Normal SMS charges apply.'**
+  String get familyChannelSmsManualHelp;
+
   /// No description provided for @familyChannelWhatsapp.
   ///
   /// In en, this message translates to:
