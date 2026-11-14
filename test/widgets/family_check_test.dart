@@ -50,7 +50,7 @@ void main() {
     );
     expect(
       find.text(
-        'Daily Reminder: Amma has not marked Morning walk (due at 8:00 AM) as done. Please check on them.',
+        'Voice Saathi: Amma has not marked Morning walk (due at 8:00 AM) as done. Please check on them.',
       ),
       findsOneWidget,
     );
