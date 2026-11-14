@@ -8,10 +8,12 @@
 - **Navigation:** go_router (`lib/app/app.dart`).
 - **Folders:** feature-first, `lib/features/<feature>/{data,domain,presentation}`, shared code in `lib/core/`.
 - **Generated code:** only `gen-l10n` (`lib/l10n/app_localizations*.dart`). Edit the `.arb` files and run `flutter gen-l10n`.
-- **Supported:** Android only (alarms are native Kotlin in `android/app/src/main/kotlin/.../alarm/`).
+- **App:** published as **Voice Saathi** (formerly Daily Reminder); the package stays `dev.chandra.medicine_reminder` so Play and APK installs update in place. `/` is the voice home; `/reminders` is the old Daily Reminder home.
+- **Supported:** Android only (alarms are native Kotlin in `android/app/src/main/kotlin/.../alarm/`; listening, calls, battery and torch in `SpeechChannel.kt` and `PhoneChannel.kt` next to `MainActivity.kt`, wrapped in `lib/core/platform/`).
+- **Voice commands:** `lib/features/assistant/domain/` matches what was heard against word lists (`keywords.dart`), no network and no AI model. Every new phrase gets a test in `test/domain/command_parser_test.dart` in all three languages.
 - **Time:** doses are wall-clock (`LocalDateTime`), events are stored in UTC.
 - **Strings:** every string exists in English, Telugu and Hindi; `test/l10n_completeness_test.dart` enforces it.
-- **Storage:** small JSON files on the phone (`JsonFileStore`); no network code at all.
+- **Storage:** small JSON files on the phone (`JsonFileStore`); no network code and no INTERNET permission. Online speech recognition, when the family allows it, runs in the phone's Google speech service, not in this app.
 
 ## Before you finish any change
 
