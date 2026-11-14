@@ -34,7 +34,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         .change((s) => s.copyWith(onboarded: true));
     ref.invalidate(permissionsProvider);
     if (!mounted) return;
-    context.go('/');
+    // Next, the family adds the people the voice home can call.
+    context.go('/setup');
   }
 
   @override

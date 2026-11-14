@@ -117,7 +117,7 @@ Future<void> shoot(
   WidgetTester tester,
   String name, {
   required LocalDateTime now,
-  String location = '/',
+  String location = '/reminders',
   AppLanguage language = AppLanguage.english,
   List<DoseEvent>? events,
   FamilyCheck family = const FamilyCheck(),

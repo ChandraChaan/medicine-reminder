@@ -193,7 +193,7 @@ void main() {
       expect(extra['channel'], 'sms');
       expect(
         extra['message'],
-        'Daily Reminder: Amma has not marked Morning walk (due at 8:00 AM) as done. Please check on them.',
+        'Voice Saathi: Amma has not marked Morning walk (due at 8:00 AM) as done. Please check on them.',
       );
       // Ids stay unique across ring and check alarms.
       expect(entries.map((e) => e.id).toSet(), hasLength(entries.length));
@@ -204,10 +204,7 @@ void main() {
         data(ready, language: AppLanguage.telugu),
         at(day1, 7),
       ).firstWhere((e) => e.kind == AlarmKind.check);
-      expect(
-        (te.extra['message']! as String),
-        startsWith('డైలీ రిమైండర్: Amma'),
-      );
+      expect((te.extra['message']! as String), startsWith('వాయిస్ సాథీ: Amma'));
     });
   });
 }

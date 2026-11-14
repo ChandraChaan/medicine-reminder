@@ -14,6 +14,7 @@ import 'package:medicine_reminder/features/medicines/domain/medicine.dart';
 import 'package:medicine_reminder/features/settings/domain/app_settings.dart';
 
 import 'fakes.dart';
+import 'voice_fakes.dart';
 
 /// Everything a widget test can look at after pumping.
 class TestApp {
@@ -38,8 +39,16 @@ class TestApp {
   final speech = FakeSpeech();
   final notificationPermission = FakeNotificationPermission();
   final smsPermission = FakeSmsPermission();
+  final recognizer = FakeRecognizer();
+  final phone = FakePhone();
+  final voicePermissions = FakeVoicePermissions();
+  final contacts = FakeContactRepository();
 
   List<Override> get overrides => [
+    speechRecognizerProvider.overrideWithValue(recognizer),
+    phoneProvider.overrideWithValue(phone),
+    voicePermissionsProvider.overrideWithValue(voicePermissions),
+    contactRepositoryProvider.overrideWithValue(contacts),
     clockProvider.overrideWithValue(clock),
     alarmBridgeProvider.overrideWithValue(bridge),
     speechServiceProvider.overrideWithValue(speech),
@@ -52,10 +61,11 @@ class TestApp {
     settingsRepositoryProvider.overrideWithValue(settings),
   ];
 
-  /// Pumps the real app (router included) starting at [location].
+  /// Pumps the real app (router included) starting at [location]; by
+  /// default today's reminders, the Daily Reminder home.
   Future<void> pump(
     WidgetTester tester, {
-    String location = '/',
+    String location = '/reminders',
     Size size = const Size(412, 915),
     double textScale = 1,
   }) async {
@@ -65,6 +75,7 @@ class TestApp {
     tester.platformDispatcher.textScaleFactorTestValue = textScale;
     addTearDown(tester.view.reset);
     addTearDown(bridge.dispose);
+    addTearDown(recognizer.dispose);
     addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
     await tester.pumpWidget(
       ProviderScope(

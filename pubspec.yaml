@@ -1,7 +1,7 @@
 name: medicine_reminder
 description: "Daily reminders that ring like an alarm: big text, spoken reminders in Telugu, Hindi or English, and an optional family check. Everything stays on the phone."
 publish_to: 'none'
-version: 1.1.0+2
+version: 2.0.0+3
 
 environment:
   sdk: ^3.12.2

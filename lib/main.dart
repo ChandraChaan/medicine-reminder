@@ -8,11 +8,15 @@ import 'package:path_provider/path_provider.dart';
 import 'app/app.dart';
 import 'core/platform/alarm_bridge.dart';
 import 'core/platform/notification_permission.dart';
+import 'core/platform/phone.dart';
 import 'core/platform/photo_picker.dart';
+import 'core/platform/speech_recognizer.dart';
+import 'core/platform/voice_permissions.dart';
 import 'core/providers.dart';
 import 'core/speech/speech_service.dart';
 import 'core/storage/json_file_store.dart';
 import 'features/doses/data/file_dose_log_repository.dart';
+import 'features/family/data/file_contact_repository.dart';
 import 'features/medicines/data/file_medicine_repository.dart';
 import 'features/settings/data/file_settings_repository.dart';
 
@@ -42,6 +46,14 @@ Future<void> main() async {
           const PermissionHandlerSmsPermission(),
         ),
         photoPickerProvider.overrideWithValue(ImagePickerPhotoPicker()),
+        speechRecognizerProvider.overrideWithValue(ChannelSpeechRecognizer()),
+        phoneProvider.overrideWithValue(const ChannelPhone()),
+        voicePermissionsProvider.overrideWithValue(
+          const PermissionHandlerVoicePermissions(),
+        ),
+        contactRepositoryProvider.overrideWithValue(
+          FileContactRepository(store),
+        ),
         medicineRepositoryProvider.overrideWithValue(
           FileMedicineRepository(store),
         ),

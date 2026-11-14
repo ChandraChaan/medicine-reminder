@@ -81,7 +81,8 @@ void main() {
       await tester.tap(find.byKey(const Key('alarm-close')));
       await TestApp.settle(tester);
       expect(t.bridge.alarmDoneCalls, 1);
-      expect(find.text('Today'), findsOneWidget);
+      // Home is the voice home, with the talk key.
+      expect(find.text('Press and speak'), findsOneWidget);
     },
   );
 

@@ -129,6 +129,10 @@ class LocalDateTime implements Comparable<LocalDateTime> {
     minute,
   ).subtract(offset);
 
+  /// This wall-clock time as a local [DateTime], for formatting.
+  DateTime toDateTime() =>
+      DateTime(date.year, date.month, date.day, hour, minute);
+
   bool isBefore(LocalDateTime other) => compareTo(other) < 0;
   bool isAfter(LocalDateTime other) => compareTo(other) > 0;
 

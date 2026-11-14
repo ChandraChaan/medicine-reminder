@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">डेली रिमाइंडर</string>
+    <string name="app_name">वॉयस साथी</string>
     <string name="channel_alarms">रिमाइंडर अलार्म</string>
     <string name="channel_notices">अन्य सूचनाएँ</string>
 </resources>

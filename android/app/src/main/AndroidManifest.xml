@@ -12,6 +12,13 @@
     <!-- Put alarms back after the phone restarts. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Voice Saathi: listen when the talk key is pressed (asked at runtime). -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Call family straight away (asked at runtime). Without it the app
+         opens the dialer with the number filled in. -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
     <!-- Sending SMS (full flavor only) must not make the app phone-only. -->
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
 
@@ -63,6 +70,14 @@
     </application>
 
     <queries>
+        <!-- The phone's speech recogniser (Android 11+ package visibility). -->
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <!-- The dialer, when the Phone permission is not given. -->
+        <intent>
+            <action android:name="android.intent.action.DIAL" />
+        </intent>
         <intent>
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
