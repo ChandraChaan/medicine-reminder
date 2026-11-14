@@ -13,6 +13,7 @@ Map<String, Object?> settingsToJson(AppSettings s) => {
     'channel': s.family.channel.name,
     'smsConsent': s.family.smsConsent,
   },
+  'allowOnline': s.allowOnline,
 };
 
 FamilyCheck _familyFromJson(Object? json) {
@@ -36,6 +37,7 @@ AppSettings settingsFromJson(Map<String, Object?> json) {
     missedAfterMinutes:
         json['missedAfterMinutes'] as int? ?? defaults.missedAfterMinutes,
     family: _familyFromJson(json['family']),
+    allowOnline: json['allowOnline'] as bool? ?? defaults.allowOnline,
   );
 }
 

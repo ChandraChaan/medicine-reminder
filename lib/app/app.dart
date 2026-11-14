@@ -8,10 +8,13 @@ import 'package:go_router/go_router.dart';
 import '../core/l10n/l10n.dart';
 import '../core/providers.dart';
 import '../core/theme/app_theme.dart';
+import '../features/assistant/presentation/assistant_controller.dart';
+import '../features/assistant/presentation/voice_home_screen.dart';
 import '../features/doses/presentation/alarm_screen.dart';
 import '../features/doses/presentation/alarm_sync.dart';
 import '../features/doses/presentation/history_screen.dart';
 import '../features/doses/presentation/home_screen.dart';
+import '../features/family/presentation/contact_form_screen.dart';
 import '../features/medicines/presentation/medicine_form_screen.dart';
 import '../features/medicines/presentation/medicines_screen.dart';
 import '../features/settings/domain/app_settings.dart';
@@ -19,11 +22,30 @@ import '../features/settings/presentation/family_check_screen.dart';
 import '../features/settings/presentation/onboarding_screen.dart';
 import '../features/settings/presentation/settings_controller.dart';
 import '../features/settings/presentation/settings_screen.dart';
+import '../features/settings/presentation/setup_screen.dart';
+import '../features/settings/presentation/voice_status.dart';
 
 GoRouter buildRouter(String initialLocation) => GoRouter(
   initialLocation: initialLocation,
   routes: [
-    GoRoute(path: '/', builder: (_, _) => const HomeScreen()),
+    // The voice home: talk key, family keys, Help and today's reminders.
+    GoRoute(path: '/', builder: (_, _) => const VoiceHomeScreen()),
+    GoRoute(path: '/reminders', builder: (_, _) => const HomeScreen()),
+    GoRoute(
+      path: '/setup',
+      builder: (_, _) => const SetupScreen(),
+      routes: [
+        GoRoute(
+          path: 'contact/new',
+          builder: (_, _) => const ContactFormScreen(),
+        ),
+        GoRoute(
+          path: 'contact/:id',
+          builder: (_, state) =>
+              ContactFormScreen(contactId: state.pathParameters['id']),
+        ),
+      ],
+    ),
     GoRoute(path: '/welcome', builder: (_, _) => const OnboardingScreen()),
     GoRoute(path: '/alarm', builder: (_, _) => const AlarmScreen()),
     GoRoute(path: '/history', builder: (_, _) => const HistoryScreen()),
@@ -74,7 +96,17 @@ class _MedicineReminderAppState extends ConsumerState<MedicineReminderApp>
     if (state == AppLifecycleState.resumed) {
       ref.invalidate(permissionsProvider);
       ref.invalidate(nowProvider);
+      // Voice permissions, offline speech downloads and voices may have
+      // changed while the app was away.
+      ref
+        ..invalidate(voicePermissionStatusProvider)
+        ..invalidate(recognizerStatusProvider)
+        ..invalidate(hasVoiceProvider);
       unawaited(ref.read(alarmSyncProvider).resync());
+      // Usually back from a call: offer the next Help person if needed.
+      unawaited(ref.read(assistantProvider.notifier).onResumed());
+    } else if (state == AppLifecycleState.paused) {
+      unawaited(ref.read(speechServiceProvider).stop());
     }
   }
 

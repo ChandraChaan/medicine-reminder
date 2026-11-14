@@ -17,4 +17,10 @@ class SettingsController extends AsyncNotifier<AppSettings> {
     state = AsyncData(next);
     await ref.read(settingsRepositoryProvider).save(next);
   }
+
+  Future<void> setLanguage(AppLanguage language) =>
+      change((s) => s.copyWith(language: language));
+
+  Future<void> setAllowOnline(bool allow) =>
+      change((s) => s.copyWith(allowOnline: allow));
 }

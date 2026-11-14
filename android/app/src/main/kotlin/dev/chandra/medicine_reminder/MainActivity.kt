@@ -18,6 +18,7 @@ import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
     private var channel: MethodChannel? = null
+    private var speech: SpeechChannel? = null
     private var launchedFromAlarm = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,14 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        // Voice Saathi: listening, calls, battery and torch.
+        val messenger = flutterEngine.dartExecutor.binaryMessenger
+        val speechChannel = MethodChannel(messenger, "voice_saathi/speech")
+        speech = SpeechChannel(applicationContext, speechChannel).also {
+            speechChannel.setMethodCallHandler(it)
+        }
+        MethodChannel(messenger, "voice_saathi/phone").setMethodCallHandler(PhoneChannel(this))
+
         channel = MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             "dev.chandra.medicine_reminder/alarms",
@@ -183,5 +192,10 @@ class MainActivity : FlutterActivity() {
                 Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName")),
             )
         }
+    }
+
+    override fun onDestroy() {
+        speech?.dispose()
+        super.onDestroy()
     }
 }

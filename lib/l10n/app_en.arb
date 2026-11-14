@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "appTitle": "Daily Reminder",
+  "appTitle": "Voice Saathi",
   "languageEnglish": "English",
   "languageTelugu": "తెలుగు",
   "languageHindi": "हिन्दी",
@@ -15,9 +15,9 @@
   "retry": "Try again",
   "errorGeneric": "Something went wrong. Please try again.",
   "chooseLanguageTitle": "Choose a language",
-  "onboardingTitle": "Reminders that ring like an alarm",
-  "onboardingBody": "At reminder time the phone rings, shows the reminder in big letters and reads it out. It works even when the phone is locked.",
-  "onboardingPrivacy": "Everything stays on this phone. No account, no internet, no ads.",
+  "onboardingTitle": "A phone helper that listens and reminds",
+  "onboardingBody": "Press one big button and speak to call family, ask the time or ask for help. Reminders ring like an alarm and are read out, even when the phone is locked.",
+  "onboardingPrivacy": "Everything stays on this phone. No account, no ads. Listening uses the phone's own speech recognition; online listening stays off unless you turn it on.",
   "allowReminders": "Allow reminders",
   "onboardingStart": "Start",
   "todayTitle": "Today",
@@ -282,7 +282,7 @@
   "familyTestSent": "Test message sent.",
   "familyTestFailed": "The message could not be sent. Check the number and the SIM.",
   "familyMessagePreview": "Message preview",
-  "familyMessage": "Daily Reminder: {person} has not marked {medicines} (due at {time}) as done. Please check on them.",
+  "familyMessage": "Voice Saathi: {person} has not marked {medicines} (due at {time}) as done. Please check on them.",
   "@familyMessage": {
     "placeholders": {
       "person": {
@@ -296,7 +296,7 @@
       }
     }
   },
-  "familyTestMessage": "Daily Reminder: this is a test. You will get a message like this if {person} misses a reminder.",
+  "familyTestMessage": "Voice Saathi: this is a test. You will get a message like this if {person} misses a reminder.",
   "@familyTestMessage": {
     "placeholders": {
       "person": {
@@ -312,5 +312,300 @@
   "familyNeedsNumber": "Add at least one phone number.",
   "familyNeedsConsent": "Please tick the agreement to use SMS.",
   "familyStatusOn": "On",
-  "familyStatusOff": "Off"
+  "familyStatusOff": "Off",
+  "speakButton": "Press and speak",
+  "listening": "Listening…",
+  "tapToStop": "Press again to stop",
+  "thinking": "One moment…",
+  "youSaid": "You said: “{text}”",
+  "@youSaid": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "familyHeading": "Tap a photo to call",
+  "helpButton": "Help",
+  "helpButtonHint": "Calls family for help",
+  "holdToOpen": "Press and hold to open",
+  "noContactsYet": "No family numbers yet. Ask your family to open Family setup.",
+  "callName": "Call {name}",
+  "@callName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "helpNextTitle": "Did {name} answer?",
+  "@helpNextTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "helpFine": "Yes, I'm fine",
+  "spokenPartMorning": "in the morning",
+  "spokenPartAfternoon": "in the afternoon",
+  "spokenPartEvening": "in the evening",
+  "spokenPartNight": "at night",
+  "sayCalling": "Calling {name}.",
+  "@sayCalling": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sayDialer": "Press the green button to call {name}.",
+  "@sayDialer": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sayCallFailed": "I could not call {name}. Please try again.",
+  "@sayCallFailed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sayCallingForHelp": "Calling {name} for help.",
+  "@sayCallingForHelp": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "sayHelpNext": "If {name} did not answer, press the red Help button to call {next}.",
+  "@sayHelpNext": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "next": {
+        "type": "String"
+      }
+    }
+  },
+  "sayNoHelpContacts": "No one is set up for Help yet. Please ask your family to set it up.",
+  "sayWhom": "Whom should I call? Say the name, or tap a photo.",
+  "sayTime": "It is {clock} {part}.",
+  "@sayTime": {
+    "placeholders": {
+      "clock": {
+        "type": "String"
+      },
+      "part": {
+        "type": "String"
+      }
+    }
+  },
+  "sayDate": "Today is {weekday}, {date}.",
+  "@sayDate": {
+    "placeholders": {
+      "weekday": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "sayBattery": "The battery is at {percent} percent.",
+  "@sayBattery": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "sayCharging": "It is charging.",
+  "sayChargeSoon": "Please put the phone on charge.",
+  "sayBatteryUnknown": "I could not read the battery.",
+  "sayTorchOn": "The light is on.",
+  "sayTorchOff": "The light is off.",
+  "sayNoTorch": "This phone has no light I can turn on.",
+  "sayNotUnderstood": "Sorry, I did not understand. Press the button and say it again, or tap a photo to call.",
+  "sayHeardNothing": "I did not hear anything. Press the button and speak.",
+  "sayVoiceNotReady": "Listening is not ready on this phone yet. Please ask your family to open Family setup. You can still tap a photo to call.",
+  "sayNoInternet": "I need the internet to understand you on this phone. Please try again, or tap a photo to call.",
+  "sayMicDenied": "I need the microphone to listen. Please ask your family to allow it in Family setup.",
+  "sayTryAgain": "Something went wrong. Please press the button again.",
+  "setupIntro": "Set this up once for your parent. Add the people they call most. The red Help button calls the people marked Help, from the top of the list.",
+  "languageHeading": "Language",
+  "familyMembers": "Family members",
+  "addContact": "Add a person",
+  "reorderHint": "Drag the handle on the right to change the order.",
+  "speechHeading": "Listening",
+  "speechOffline": "{language} is understood on this phone, without internet. Nothing your parent says leaves the phone.",
+  "@speechOffline": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "speechDownloading": "Google is downloading {language} for offline use. This can take a few minutes on Wi-Fi.",
+  "@speechDownloading": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "speechDownloadable": "{language} can be understood without internet after a one-time download from Google.",
+  "@speechDownloadable": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "speechDownload": "Download {language}",
+  "@speechDownload": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "speechDownloadStarted": "Follow the phone's prompt to download. Keep the phone on Wi-Fi for a few minutes.",
+  "speechDownloadFailed": "This phone can't download it. Turn on online listening below instead.",
+  "speechOnlineOnly": "This phone can't understand {language} without internet.",
+  "@speechOnlineOnly": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "speechUnknown": "This phone understands speech on its own, but can't tell whether {language} is ready. Try the big button.",
+  "@speechUnknown": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "speechNone": "This phone has no speech recognition. Install or update the Google app, or use the photos to call.",
+  "allowOnline": "Allow online listening",
+  "allowOnlineDetail": "Uses the phone's Google speech service, which sends what your parent says to Google to turn it into text. Only used when the phone can't do it alone.",
+  "voiceHeading": "Voice",
+  "hearSample": "Hear a sample",
+  "voiceSample": "Hello. Press the big button and speak to me.",
+  "noVoice": "This phone has no {language} voice, so replies may be read in another language. Install it in the phone's Settings, under Text-to-speech.",
+  "@noVoice": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "permissionsHeading": "Permissions",
+  "micPermission": "Microphone, to listen",
+  "phonePermission": "Phone, to call straight away",
+  "phonePermissionDetail": "Without it, the dialer opens and your parent presses the green button.",
+  "allowed": "Allowed",
+  "allow": "Allow",
+  "done": "Done",
+  "newContact": "New person",
+  "editContact": "Edit {name}",
+  "@editContact": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "contactNameLabel": "Name shown under the photo",
+  "phoneLabel": "Phone number",
+  "contactNameRequired": "Enter a name",
+  "phoneRequired": "Enter a phone number",
+  "photoOf": "Photo of {name}",
+  "@photoOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "nicknamesHeading": "Other names your parent uses",
+  "nicknamesHint": "For example “pedda abbayi”, “బాబు” or “बेटा”. Tap Say it and say the name the way your parent says it, so the phone learns how it hears it.",
+  "nicknameField": "Type a name",
+  "addNickname": "Add",
+  "sayIt": "Say it",
+  "heardNickname": "Heard “{text}”. Added.",
+  "@heardNickname": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "heardNicknameNothing": "Didn't catch that. Try again.",
+  "removeNickname": "Remove {name}",
+  "@removeNickname": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "forHelpTitle": "Call for Help",
+  "forHelpDetail": "The red Help button calls this person.",
+  "deleteConfirm": "Delete {name}?",
+  "@deleteConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeBody": "A phone helper your parent can talk to. Press one big button and speak: call family, ask the time or the day, turn on the light, or ask for help.",
+  "chooseLanguage": "Choose a language",
+  "privacyNote": "Everything stays on this phone. No account, no ads, no tracking.",
+  "continueButton": "Continue",
+  "todaysReminders": "Today's reminders",
+  "remindersLeft": "{count, plural, =1{1 left today} other{{count} left today}}",
+  "@remindersLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "remindersAllDone": "Nothing left for today",
+  "remindersNone": "No reminders set",
+  "sayRemindersLeft": "Still to do today: {items}.",
+  "@sayRemindersLeft": {
+    "placeholders": {
+      "items": {
+        "type": "String"
+      }
+    }
+  },
+  "sayReminderItem": "{name} at {time}",
+  "@sayReminderItem": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sayNoRemindersLeft": "Nothing is left to do today.",
+  "sayNoReminders": "No reminders are set yet. Please ask your family to add them.",
+  "setupReminders": "Reminders",
+  "setupRemindersDetail": "Daily reminders that ring like an alarm, and the family check for missed ones.",
+  "setupEditReminders": "Reminders and times",
+  "setupReminderSettings": "Reminder settings and family check"
 }

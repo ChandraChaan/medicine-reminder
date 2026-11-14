@@ -3,12 +3,16 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/doses/domain/dose_log_repository.dart';
+import '../features/family/domain/contact.dart';
 import '../features/medicines/domain/medicine_repository.dart';
 import '../features/settings/domain/app_settings.dart';
 import 'platform/alarm_bridge.dart';
 import 'platform/distribution.dart';
 import 'platform/notification_permission.dart';
+import 'platform/phone.dart';
 import 'platform/photo_picker.dart';
+import 'platform/speech_recognizer.dart';
+import 'platform/voice_permissions.dart';
 import 'speech/speech_service.dart';
 import 'time/clock.dart';
 import 'time/local_date.dart';
@@ -48,6 +52,22 @@ final medicineRepositoryProvider = Provider<MedicineRepository>(
 
 final doseLogRepositoryProvider = Provider<DoseLogRepository>(
   (ref) => throw UnimplementedError('Override doseLogRepositoryProvider'),
+);
+
+final speechRecognizerProvider = Provider<SpeechRecognizer>(
+  (ref) => throw UnimplementedError('Override speechRecognizerProvider'),
+);
+
+final phoneProvider = Provider<Phone>(
+  (ref) => throw UnimplementedError('Override phoneProvider'),
+);
+
+final voicePermissionsProvider = Provider<VoicePermissions>(
+  (ref) => throw UnimplementedError('Override voicePermissionsProvider'),
+);
+
+final contactRepositoryProvider = Provider<ContactRepository>(
+  (ref) => throw UnimplementedError('Override contactRepositoryProvider'),
 );
 
 final settingsRepositoryProvider = Provider<SettingsRepository>(

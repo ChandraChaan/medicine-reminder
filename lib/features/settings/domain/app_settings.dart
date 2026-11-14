@@ -134,6 +134,7 @@ class AppSettings {
     this.speak = true,
     this.missedAfterMinutes = 60,
     this.family = const FamilyCheck(),
+    this.allowOnline = false,
   });
 
   final AppLanguage language;
@@ -150,18 +151,25 @@ class AppSettings {
   /// Tell family about missed doses (optional).
   final FamilyCheck family;
 
+  /// Whether the phone's online recogniser (usually Google's) may be used
+  /// when the language can't be recognised on the phone. Off by default:
+  /// online recognition sends the voice to the recogniser's servers.
+  final bool allowOnline;
+
   AppSettings copyWith({
     AppLanguage? language,
     bool? onboarded,
     bool? speak,
     int? missedAfterMinutes,
     FamilyCheck? family,
+    bool? allowOnline,
   }) => AppSettings(
     language: language ?? this.language,
     onboarded: onboarded ?? this.onboarded,
     speak: speak ?? this.speak,
     missedAfterMinutes: missedAfterMinutes ?? this.missedAfterMinutes,
     family: family ?? this.family,
+    allowOnline: allowOnline ?? this.allowOnline,
   );
 
   @override
@@ -171,11 +179,18 @@ class AppSettings {
       other.onboarded == onboarded &&
       other.speak == speak &&
       other.missedAfterMinutes == missedAfterMinutes &&
-      other.family == family;
+      other.family == family &&
+      other.allowOnline == allowOnline;
 
   @override
-  int get hashCode =>
-      Object.hash(language, onboarded, speak, missedAfterMinutes, family);
+  int get hashCode => Object.hash(
+    language,
+    onboarded,
+    speak,
+    missedAfterMinutes,
+    family,
+    allowOnline,
+  );
 }
 
 abstract interface class SettingsRepository {
